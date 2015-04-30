@@ -1,0 +1,44 @@
+$spy-red: #e12;
+$resistance-blue: #5ab;
+
+.card {
+	cursor: pointer;
+	
+	padding: 10px;
+	margin: 5px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+
+	display: flex;
+}
+
+.card--selected {
+	background: #DFF2BF;
+}
+
+.card__affiliation {
+	flex: 0 0 auto;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+.card__info {
+	flex: 1 1 auto;
+}
+
+.card__affiliation--spy {
+	background: $spy-red; 
+}
+
+.card__affiliation--resistance {
+	background: $resistance-blue;
+}
+
+.card__name {
+	font-weight: bold;
+}
+
+.card__description {
+	font-size: 0.8em;
+}

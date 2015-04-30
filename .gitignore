@@ -1,0 +1,4 @@
+.DS_Store
+build_prod/
+node_modules/
+public/
