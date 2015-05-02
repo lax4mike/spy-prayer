@@ -1,6 +1,8 @@
-import allCards from "../config/cardsCollection";
+import config from "../config/resistance";
 import "./Array.prototype.find.js";
 import "./Array.prototype.findIndex.js";
+
+var allCards = config.cardsCollection;
 
 // import usage:
 // import * as resolveDependencies from ".resolveDependencies.js";

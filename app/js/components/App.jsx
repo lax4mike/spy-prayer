@@ -1,5 +1,7 @@
 import Cards from "./Cards.jsx";
-import cardsCollection from "../config/cardsCollection.js";
+import config from "../config/resistance.js";
+
+var cardsCollection = config.cardsCollection;
 
 var App = React.createClass({
 
