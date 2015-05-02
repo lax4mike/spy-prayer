@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "babelify": "^6.0.2",
-    "browser-sync": "^1.6.3",
+    "browser-sync": "^2.6.9",
     "browserify": "^7.0.2",
     "cheerio": "^0.18.0",
     "cli-color": "^0.3.2",

@@ -47,14 +47,16 @@ gulp.task("prod", function(){
     // set the prod config (cache in utils.js)
     config = utils.setConfig({
         root  : path.resolve("../app"),
-        dest  : path.resolve("../build_prod"),
+        dest  : path.resolve("../public"),
         env   : "prod",
         tasks : ["js", "css", "html", "bower"],
         watch : false
     });
 
-    // build with this config
-    build();
+    // clean first, then build with this config
+    del([config.dest], {force: true}, function(){
+        build(); 
+    });
 
 });
 
