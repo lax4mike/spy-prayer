@@ -1,11 +1,17 @@
 import Card from "./Card.jsx";
 import * as resolveDependencies from "../common/resolveDependencies.js";
-import "../common/Array.prototype.find.js";
+import "../utils/Array.prototype.find.js";
 
 var Cards = React.createClass({
 
+    propTypes: {
+        cardsCollection : React.PropTypes.array,
+        onChange        : React.PropTypes.func
+    },
+
     componentDidUpdate: function(){
         // console.log("new cards", this.state.selectedCards.map((c)=>c.id));
+        this.props.onChange(this.state.selectedCards);
     },
 
     getInitialState: function(){

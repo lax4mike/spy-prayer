@@ -1,6 +1,22 @@
-import classNames from "../common/classNames.js";
+import classNames from "../utils/classNames.js";
+
+/* 
+{
+    "id": "commander",
+    "name": "Commander",
+    "team": "resistance",
+    "description": "Knows spies, must remain hidden",
+    "dependencies": ["assassin"]
+}
+*/
 
 var Card = React.createClass({
+
+    propTypes: {
+        card     : React.PropTypes.object, // straight from config
+        selected : React.PropTypes.bool, // will set state
+        onClick  : React.PropTypes.func
+    },
 
     getInitialState: function(){
         // this is an anti-pattern... https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html

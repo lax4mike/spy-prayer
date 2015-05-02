@@ -1,6 +1,6 @@
 import config from "../config/resistance";
-import "./Array.prototype.find.js";
-import "./Array.prototype.findIndex.js";
+import "../utils/Array.prototype.find.js";
+import "../utils/Array.prototype.findIndex.js";
 
 var allCards = config.cardsCollection;
 
