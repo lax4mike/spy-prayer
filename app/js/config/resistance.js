@@ -1,7 +1,7 @@
 
 var resistance = {
 
-    cardsCollection: [
+    "cardsCollection": [
         {
             "id": "commander",
             "name": "Commander",
@@ -44,33 +44,35 @@ var resistance = {
         }
     ],
 
-    script: [
-        {
-            "text": "Everyone close your eyes and extend your hand into a fist in front of you. Spys, open your eyes and look around so that you may know know all agents of evil."
-        },
-        {
-            "text": "Spys, close your eyes."
-        },
-        {
-            "text": "Spys, extend your thumbs so that the Commander will know of you scum. Commander, open your eyes and see the agents of evil.",
-            "dependencies": ["commander"]
-        },
-        {
-            "text": "Spys, put your thumbs down and reform your hand into a fist. Commander, close your eyes.",
-            "dependencies": ["commander"]
-        },
-        {
-            "text": "Commander, extend your thumb.  Body Guard, open your eyes and observe your leader.  Protect him with you life.",
-            "dependencies": ["commander", "body-guard"]
-        },
-        {
-            "text": "Commander, put your thumb down.  Body Guard, close your eyes.",
-            "dependencies": ["commander", "body-guard"]
-        },
-        {
-            "text": "All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes."
-        }
-    ] 
+    "script": `
+        Everyone close your eyes and extend your hand into a fist in front of you. 
+
+        * Spies,  
+
+        {blind-spy} but not the Blind Spy,
+
+        open your eyes and look around so that you may know all of the agents of evil.
+
+        ****** 
+
+        Spies, close your eyes.
+
+        ***
+
+        {commander} Spies, extend your thumbs so that the Commander will know of you scum. 
+        {commander} * Commander, open your eyes and observe the dirty thumbs of the traitors.
+        {commander} ****** Spies, put your thumbs down and re-form your hand into a fist. 
+        {commander} * Commander, close your eyes.
+
+        {body-guard} * Commander, extend your thumb so that the body guard may know of you. 
+        {body-guard} * Body Guard, open your eyes and observe your leader.  Protect him with your life.
+
+        {commander} ****
+
+        {body-guard} Commander, put your thumb down. * Body Guard, close your eyes. * 
+
+        All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.
+        `
 };
 
 export default resistance;
