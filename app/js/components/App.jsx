@@ -1,5 +1,5 @@
 import Cards from "./Cards.jsx";
-import config from "../config/resistance.js";
+import config from "../config/config.js";
 import * as ScriptReader from "../common/scriptReader";
 
 var cardsCollection = config.cardsCollection;

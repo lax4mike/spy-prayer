@@ -1,4 +1,4 @@
-import config from "../config/resistance";
+import config from "../config/config.js";
 import "../utils/Array.prototype.find.js";
 import "../utils/Array.prototype.findIndex.js";
 

@@ -1,5 +1,5 @@
 import * as Speaker from "../common/speaker";
-import config from "../config/resistance.js";
+import config from "../config/config.js";
 import "../utils/Array.prototype.includes.js";
 
 /*
@@ -51,8 +51,15 @@ function readScript(selectedCards) {
         // merge it all back into a string
         .join(' ')
 
+        .replace(/\s*(,|\.)\s*(?=\S)/g, "$1 ") // fix commas and periods (for merged lines)
+
         // then split it back out on the pause points (parts that have *'s)
-        .split(/\s?{split-here}\s?/g);
+        .split(/\s*{split-here}\s*/g)
+
+        // make sure we don't have any empty lines... (might happen if the script has * * (star space star))
+        .filter((s) => s !== "")
+
+        .map(s => s.trim()); // make sure each line is trimmed (mostly just the last...)
 
 
     // console.log(script);
