@@ -27,7 +27,7 @@ var App = React.createClass({
                     <Cards cardsCollection={cardsCollection} onChange={this.onCardsChange} />
                 </main>
                 <footer>
-                    <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Narrate prayer</button>
+                    <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Pray</button>
                 </footer>
             </div>
         );
