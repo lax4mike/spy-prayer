@@ -29,7 +29,7 @@ gulp.task("dev", function(){
         root  : path.resolve("../app"),
         dest  : path.resolve("../public"),
         env   : "dev",
-        tasks : ["js", "css", "html", "bower"],
+        tasks : ["js", "css", "html", "bower", "svg-sprite"],
         watch : true
     });
 
@@ -49,7 +49,7 @@ gulp.task("prod", function(){
         root  : path.resolve("../app"),
         dest  : path.resolve("../public"),
         env   : "prod",
-        tasks : ["js", "css", "html", "bower"],
+        tasks : ["js", "css", "html", "bower", "svg-sprite"],
         watch : false
     });
 

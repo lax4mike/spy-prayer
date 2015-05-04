@@ -18,8 +18,17 @@ var App = React.createClass({
     render: function(){ 
         return (
             <div className="app">
-                <Cards cardsCollection={cardsCollection} onChange={this.onCardsChange} />
-                <button onClick={this.playScript}>Play</button>
+                <header>
+                    <div className="header-content">
+                        <h1>The Resistence: Spy Prayer</h1>
+                    </div>
+                </header>
+                <main>
+                    <Cards cardsCollection={cardsCollection} onChange={this.onCardsChange} />
+                </main>
+                <footer>
+                    <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Narrate prayer</button>
+                </footer>
             </div>
         );
     }

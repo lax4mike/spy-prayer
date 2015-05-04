@@ -1,4 +1,4 @@
 import App from "./components/App.jsx";
 
-React.render(<App />, $(".main")[0]);
+React.render(<App />, $(".mount")[0]);
 

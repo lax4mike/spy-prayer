@@ -1,0 +1,23 @@
+@import "variables";
+
+.play-btn {
+    background: white;
+    border: 1px solid #999;
+    color: black;
+    outline: none;
+    display: block;
+    margin: auto;
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: $border-radius;
+
+    .sub {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    &:active {
+        background: #eee;
+    }
+}
