@@ -9,12 +9,14 @@ var html = {
     src: [ 
         config.root + "/html/**/*.html", 
         config.root + "/html/**/*.htm",
-        config.root + "/index.html"
+        config.root + "/index.html",
+        config.root + "/favicon.ico"
     ],
     watch: [ 
         config.root + "/html/**/*.html", 
         config.root + "/html/**/*.htm",
-        config.root + "/index.html"
+        config.root + "/index.html",
+        config.root + "/favicon.ico"
     ],
     dest: config.dest
 };
