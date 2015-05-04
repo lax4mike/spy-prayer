@@ -1,4 +1,4 @@
-
+// http://www.redmeeple.com/site/images/Rules/The_Resistance_Avalon_Rules%28EN%29.pdf
 var resistance = {
 
     "cardsCollection": [
@@ -30,7 +30,7 @@ var resistance = {
         },
         {
             "id": "deep-cover",
-            "name": "Deep Cover",
+            "name": "Deep Cover Spy",
             "team": "spy",
             "description": "Unknown to Commander",
             "dependencies": ["commander"]
@@ -51,25 +51,34 @@ var resistance = {
 
         {blind-spy} but not the Blind Spy,
 
-        open your eyes and look around so that you may know all of the agents of evil.
+        put your thumbs up and open your eyes. Look around so that you may know all of the agents of evil.
 
         ****** 
 
-        Spies, close your eyes.
+        Spies, lower your thumbs and close your eyes.
 
         ***
 
-        {commander} Spies, extend your thumbs so that the Commander will know of you scum. 
+        {commander} Spies, 
+        
+        {deep-cover} but not the Deep Cover Spy,
+
+        {commander} extend your thumbs so that the Commander will know of you scum. 
         {commander} * Commander, open your eyes and observe the dirty thumbs of the traitors.
         {commander} ****** Spies, put your thumbs down and re-form your hand into a fist. 
         {commander} * Commander, close your eyes.
 
-        {body-guard} * Commander, extend your thumb so that the body guard may know of you. 
+        {body-guard} * Commander 
+        {false-commander} and False Commander
+        {body-guard}, extend your thumb so that the Body Guard may know of you. 
+
         {body-guard} * Body Guard, open your eyes and observe your leader.  Protect him with your life.
 
         {commander} ****
 
-        {body-guard} Commander, put your thumb down. * Body Guard, close your eyes. * 
+        {body-guard} Commander
+        {false-commander} and False Commander
+        {body-guard}, put your thumb down. * Body Guard, close your eyes. * 
 
         All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.
         `
