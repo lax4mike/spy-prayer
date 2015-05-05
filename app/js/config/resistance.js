@@ -5,43 +5,49 @@ var resistance = {
         {
             "id": "commander",
             "name": "Commander",
-            "team": "resistance",
+            "team": "good",
+            "icon": "resistance",
             "description": "Knows spies, must remain hidden",
             "dependencies": ["assassin"]
         },
         {
-            "id": "assassin",
-            "name": "Assassin",
-            "team": "spy",
+            "id": "body-guard",
+            "name": "Body Guard",
+            "team": "good",
+            "icon": "resistance",
+            "description": "Knows Commander",
             "dependencies": ["commander"]
         },
         {
-            "id": "body-guard",
-            "name": "Body Guard",
-            "team": "resistance",
-            "description": "Knows Commander",
+            "id": "assassin",
+            "name": "Assassin",
+            "team": "evil",
+            "icon": "spy",
             "dependencies": ["commander"]
         },
         {
             "id": "blind-spy",
             "name": "Blind Spy",
-            "team": "spy",
+            "team": "evil",
+            "icon": "spy",
             "description": "Unknown to spies"
-        },
-        {
-            "id": "deep-cover",
-            "name": "Deep Cover Spy",
-            "team": "spy",
-            "description": "Unknown to Commander",
-            "dependencies": ["commander"]
         },
         {
             "id": "false-commander",
             "name": "False Commander",
-            "team": "spy",
+            "team": "evil",
+            "icon": "spy",
             "description": "Appears as Commander",
             "dependencies": ["commander", "body-guard"]
-        }
+        },
+        {
+            "id": "deep-cover",
+            "name": "Deep Cover Spy",
+            "team": "evil",
+            "icon": "spy",
+            "description": "Unknown to Commander",
+            "dependencies": ["commander"]
+        },
     ],
 
     "script": `
@@ -51,34 +57,38 @@ var resistance = {
 
         {blind-spy} but not the Blind Spy,
 
-        put your thumbs up and open your eyes. Look around so that you may know all of the agents of evil.
+        put your thumbs up and open your eyes. Look around so that you may know all of the agents of evil. 
+
+        You should see #{evilThumbsCount}.
 
         ****** 
 
-        Spies, lower your thumbs and close your eyes.
+        {!commander} Spies, lower your thumbs and close your eyes. **
 
-        ***
+        {commander && deep-cover}  Deep Cover Spy, close your eyes and lower your thumb. *
+        {commander && deep-cover}  All other spies, 
+        {commander && !deep-cover} Spies,
 
-        {commander} Spies, 
-        
-        {deep-cover} but not the Deep Cover Spy,
-
-        {commander} extend your thumbs so that the Commander will know of you scum. 
-        {commander} * Commander, open your eyes and observe the dirty thumbs of the traitors.
-        {commander} ****** Spies, put your thumbs down and re-form your hand into a fist. 
+        {commander} close your eyes, but keep your thumbs up so that the Commander will know of you scum. *
+        {commander} Commander, open your eyes and observe the dirty thumbs of the traitors.
+        {commander} You should see #{commanderThumbsCount}. 
+        {commander} ******
+        {commander} Spies, put your thumbs down. 
         {commander} * Commander, close your eyes.
 
         {body-guard} * Commander 
         {false-commander} and False Commander
         {body-guard}, extend your thumb so that the Body Guard may know of you. 
 
-        {body-guard} * Body Guard, open your eyes and observe your leader.  Protect him with your life.
+        {body-guard && !false-commander} * Body Guard, open your eyes and observe your leader.  Protect him with your life.
 
-        {commander} ****
+        {body-guard && false-commander} * Body Guard, open your eyes and observe two thumbs. One of them is your leader, the other is a filthy imposter.
 
-        {body-guard} Commander
-        {false-commander} and False Commander
-        {body-guard}, put your thumb down. * Body Guard, close your eyes. * 
+        {body-guard} ****
+
+        {body-guard && !false-commander} Commander, put your thumb down. * 
+        {boyd-guard && false-commander} Commander, and False Commander, put your thumbs down. * 
+        {body-guard} Body Guard, close your eyes. * 
 
         All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.
         `

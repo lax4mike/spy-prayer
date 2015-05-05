@@ -1,0 +1,58 @@
+@import "variables";
+
+.player-count {
+    margin-left: 0.5rem;
+
+    label {
+        font-size: .6rem;
+        font-weight: normal;
+    }
+    .num {
+        font-weight: bold;
+        margin: 0 0.25rem;
+    }
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: row;
+
+    .btn-group__btn:first-child span {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+    }
+    
+    .btn-group__btn:last-child span {
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
+
+}
+
+.btn-group__btn {
+    flex: 1 1 auto;
+    
+    input[type='radio'] {
+        display: none;
+    }
+
+    input[type='radio']:checked + span {
+        background: $background-selected;
+    }
+
+    span {
+        cursor: pointer;
+        text-align: center;
+        border: 1px solid $border-color;
+        display: block;
+        padding: 0.5rem 1rem;        
+    }
+
+    & span:hover {
+        background: $background-hover;
+    }
+
+    &.selected span {
+        background: $background-selected;
+    }
+}

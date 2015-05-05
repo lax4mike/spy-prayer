@@ -49,21 +49,24 @@ var Cards = React.createClass({
     render: function(){ 
 
         return (
-            <div className="cards">
-                {this.props.cardsCollection.map((card, i) => { 
-                    
-                    var isSelected = this.state.selectedCards.find((c) => {
-                        return card.id === c.id;
-                    });
-                    var selected = isSelected !== undefined;
+            <div className="card-select">
+                <h2>Characters:</h2>
+                <div className="cards">
+                    {this.props.cardsCollection.map((card, i) => { 
+                        
+                        var isSelected = this.state.selectedCards.find((c) => {
+                            return card.id === c.id;
+                        });
+                        var selected = isSelected !== undefined;
 
-                    return <Card 
-                            key={i} 
-                            ref={"card-" + i}
-                            card={card}
-                            selected={selected}
-                            onClick={this.onCardClick}/>;
-                })}
+                        return <Card 
+                                key={i} 
+                                ref={"card-" + i}
+                                card={card}
+                                selected={selected}
+                                onClick={this.onCardClick}/>;
+                    })}
+                </div>
             </div>
         );
  

@@ -3,20 +3,29 @@
 
 .card {
     cursor: pointer;
+
+    flex: 0 0 48%;
     
     padding: 0.35rem;
-    margin: 5px 0;
-    border: 1px solid #eee;
+    margin: 5px 1%;
+    border: 1px solid $border-color;
     border-radius: $border-radius;
+    box-sizing: border-box;
 
     display: flex;
+
+    &:hover {
+        background-color: $background-hover;
+    }
+
+    &.card--selected {
+        background: $background-selected;
+    }
 }
 
-.card--selected {
-    background: #DFF2BF;
-}
 
-.card__affiliation {
+
+.card__icon {
     flex: 0 0 auto;
     width: 35px;
     height: 35px;
@@ -34,20 +43,20 @@
 
 }
 
-.card__info {
-    flex: 1 1 auto;
-}
-
-.card__affiliation--spy {
+.card__icon--spy {
     background: $spy-red;   
 }
 
-.card__affiliation--resistance {
+.card__icon--resistance {
     background: $resistance-blue;
 
     svg {
         height: 30px;
     }
+}
+
+.card__info {
+    flex: 1 1 auto;
 }
 
 .card__name {
