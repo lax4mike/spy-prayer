@@ -2,32 +2,51 @@
 @import "./_png-sprite-generated.scss";
 
 .card {
-    cursor: pointer;
 
-    flex: 0 0 48%;
-    
-    padding: 0.35rem;
-    margin: 5px 1%;
-    border: 1px solid $border-color;
-    border-radius: $border-radius;
+
+    flex: 0 0 50%;
     box-sizing: border-box;
 
     display: flex;
+    // justify-content: stretch;
+    align-items: stretch;
 
-    .resistance &:hover { @extend .resistance-hover; }
-    .avalon &:hover { @extend .avalon-hover; }
-
-    .resistance &.card--selected { @extend .resistance-selected; }
-    .avalon &.card--selected { @extend .avalon-selected; }
+    @media (min-width: 525px) {
+        flex: 0 0 33.33333333%;
+    }
 }
 
+.card__btn {
+    display: flex;
+    padding: 5px;
+    margin: 5px 1%;
+    flex: 1 1 auto;
+    cursor: pointer;
+
+    
+    .avalon & { 
+        @extend %avalon-button; 
+        border-radius: $border-radius;
+    }
+
+    .resistance & { 
+        @extend %resistance-button; 
+        border-radius: $border-radius;
+    }
+
+    .resistance &:hover { @extend %resistance-hover; }
+    .avalon &:hover { @extend %avalon-hover; }
+
+    .resistance .card--selected & { @extend %resistance-selected; }
+    .avalon .card--selected & { @extend %avalon-selected; }
+}
 
 
 .card__icon {
     flex: 0 0 auto;
     width: 35px;
     height: 35px;
-    margin-right: 10px;
+    margin-right: 5px;
     border-radius: 30%;
     display: flex;
     justify-content: center;

@@ -8,6 +8,7 @@
     display: block;
     margin: auto;
     padding: 0.5rem 2rem;
+    font-family: inherit;
     font-size: 1.4rem;
     cursor: pointer;
     border-radius: $border-radius;
@@ -17,11 +18,12 @@
         font-size: 0.8rem;
     }
 
-    &:hover {
-        background: #f3f3f3;
-    }
+    .avalon & { @extend %avalon-button; }
+    .avalon &:hover { @extend %avalon-hover; }
 
-    &:active {
-        background: #eee;
-    }
+    .resistance & { @extend %resistance-button; }
+    .resistance &:hover { @extend %resistance-hover; }
+
+    .avalon &:active { background: #eee; }
+    .resistance &:active { background: #eee; }
 }

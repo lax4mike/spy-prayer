@@ -78,11 +78,13 @@ var Card = React.createClass({
         }
 
         return (
-            <div className={classCard} onClick={this.handleClick}>
-                {icon}
-                <div className="card__info">
-                    <div className="card__name">{this.props.card.name}</div>
-                    <div className="card__description">{this.props.card.description}</div>
+            <div className={classCard}>
+                <div className="card__btn" onClick={this.handleClick}>
+                    {icon}
+                    <div className="card__info">
+                        <div className="card__name">{this.props.card.name}</div>
+                        <div className="card__description">{this.props.card.description}</div>
+                    </div>
                 </div>
             </div>
         );

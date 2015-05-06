@@ -82,7 +82,6 @@ gulp.task("png", function(){
 gulp.task("css", ["png"], function(next) {
 
     // compile sass
-    console.log("SRC", styles.src);
     var gulpCss = gulp.src(styles.src)
         .pipe(utils.drano())
         .pipe(sass(styles.sass))

@@ -36,14 +36,17 @@ var PlayersSelect = React.createClass({
     render: function(){
         return (
             <div className="player-select">
-                <h2>Player count:
-                    <span className="player-count">
-                        <span className="num">{this.state.goodPlayersCount}</span>
-                        <label>{config.teams.good}</label>
-                    </span>
-                    <span className="player-count">
-                        <span className="num">{this.state.evilPlayersCount}</span>
-                        <label>{config.teams.evil}</label>
+                <h2>
+                    <span className="avoid-wrap">Player count:</span>
+                    <span className="avoid-wrap">
+                        <span className="player-count">
+                            <span className="num">{this.state.goodPlayersCount}</span>
+                            <label>{config.teams.good}</label>
+                        </span>
+                        <span className="player-count">
+                            <span className="num">{this.state.evilPlayersCount}</span>
+                            <label>{config.teams.evil}</label>
+                        </span>
                     </span>
                 </h2>
                 <div className="btn-group">

@@ -1,4 +1,4 @@
-$container-max-width: 400px;
+$container-max-width: 600px;
 $container-padding: 0.5rem;
 
 $border-radius: 5px;
@@ -7,8 +7,15 @@ $border-color: #ddd;
 $spy-red: #e12;
 $resistance-blue: #5ab;
 
-.resistance-hover { background: #f3f3f3; }
-.resistance-selected { background: #dff2bf; }
+%resistance-hover { background: #f3f3f3; }
+%resistance-selected { background: #dff2bf; }
+%resistance-button { 
+    background: none; 
+    border: 1px solid $border-color;
+}
 
-.avalon-hover { background: #f3f3f3; }
-.avalon-selected {  background: #cce6ff; }
+%avalon-hover { background: none; }
+%avalon-selected { background: #cce6ff; }
+%avalon-button { border: 1px solid $border-color; }
+
+

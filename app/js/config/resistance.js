@@ -72,35 +72,36 @@ var resistance = {
 
         put your thumbs up and open your eyes. Look around so that you may know all of the agents of evil. 
 
-        You should see #{evilThumbsCount}.
+        * You should see #{evilThumbsCount}.
 
-        ****** 
+        **** 
 
         {!commander} Spies, lower your thumbs and close your eyes. **
 
         {commander && deep-cover}  Deep Cover Spy, close your eyes and lower your thumb. *
         {commander && deep-cover}  All other spies, 
+
         {commander && !deep-cover} Spies,
 
         {commander} close your eyes, but keep your thumbs up so that the Commander will know of you scum. *
         {commander} Commander, open your eyes and observe the dirty thumbs of the traitors.
-        {commander} You should see #{commanderThumbsCount}. 
-        {commander} ******
+        {commander} * You should see #{commanderThumbsCount}. 
+        {commander} ****
         {commander} Spies, put your thumbs down. 
         {commander} * Commander, close your eyes.
 
         {body-guard} * Commander 
-        {false-commander} and False Commander
+        {false-commander} , and False Commander
         {body-guard}, extend your thumb so that the Body Guard may know of you. 
 
         {body-guard && !false-commander} * Body Guard, open your eyes and observe your leader.  Protect him with your life.
 
         {body-guard && false-commander} * Body Guard, open your eyes and observe two thumbs. One of them is your leader, the other is a filthy imposter.
 
-        {body-guard} ****
+        {body-guard} **
 
         {body-guard && !false-commander} Commander, put your thumb down. * 
-        {boyd-guard && false-commander} Commander, and False Commander, put your thumbs down. * 
+        {body-guard && false-commander} Commander, and False Commander, put your thumbs down. * 
         {body-guard} Body Guard, close your eyes. * 
 
         All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.

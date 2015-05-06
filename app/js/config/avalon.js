@@ -72,35 +72,36 @@ var resistance = {
 
         put your thumbs up and open your eyes. Look around so that you may know all of the agents of evil. 
 
-        You should see #{evilThumbsCount}.
+        * You should see #{evilThumbsCount}.
 
-        ****** 
+        ****
 
         {!merlin} Minions of Mordred, lower your thumbs and close your eyes. **
 
         {merlin && mordred}  Mordred, close your eyes and lower your thumb. *
         {merlin && mordred}  All other Minions of Mordred, 
-        {merlin && !mordred} Minions of Mordred,
 
+        {merlin && !mordred} Minions of Mordred,
+        
         {merlin} close your eyes, but keep your thumbs up so that Merlin will know of you scum. *
         {merlin} Merlin, open your eyes and observe the dirty thumbs of the traitors.
-        {merlin} You should see #{commanderThumbsCount}. 
-        {merlin} ******
+        {merlin} * You should see #{commanderThumbsCount}. 
+        {merlin} ****
         {merlin} Minions of Mordred, put your thumbs down. 
         {merlin} * Merlin, close your eyes.
 
         {percival} * Merlin 
-        {morgona} and Morgona
+        {morgona} , and Morgona
         {percival}, extend your thumb so that Percival may know of you. 
 
         {percival && !morgona} * Percival, open your eyes and observe Merlin's white beard.  Protect him with your life.
 
         {percival && morgona} * Percival, open your eyes and observe two thumbs. One of them is the omniscient wizard, the other is a filthy imposter.
 
-        {percival} ****
+        {percival} **
 
         {percival && !morgona} Merlin, put your thumb down. * 
-        {boyd-guard && morgona} Merlin, and Morgona, put your thumbs down. * 
+        {percival && morgona} Merlin, and Morgona, put your thumbs down. * 
         {percival} Percival, close your eyes. * 
 
         All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.

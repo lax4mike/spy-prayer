@@ -10,6 +10,11 @@ var playerCount = 0;
 
 var App = React.createClass({
 
+    componentWillMount: function(){
+        // add avalon or resistance class to the body
+        $("body").addClass(config.game);
+    },
+
     onPlayerCountChange: function(num){
         playerCount = num;
     },
@@ -24,7 +29,7 @@ var App = React.createClass({
 
     render: function(){ 
 
-        var appClasses = classNames("app", config.game);
+        var appClasses = classNames("app");
 
         var title = (config.game === "avalon") ?
             "The Resistence Avalon: Spy Prayer" :
@@ -37,13 +42,13 @@ var App = React.createClass({
                         <h1>{title}</h1>
                     </div>
                 </header>
-                <main>
+                <main>    
                     <PlayersSelect onChange={this.onPlayerCountChange}></PlayersSelect>
                     <Cards cardsCollection={cardsCollection} onChange={this.onCardsChange} />
+                    <footer>
+                        <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Pray</button>
+                    </footer>
                 </main>
-                <footer>
-                    <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Pray</button>
-                </footer>
             </div>
         );
     }
