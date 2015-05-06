@@ -1,7 +1,7 @@
 import resistance from "./resistance.js";
 import avalon from "./avalon.js";
 
-var selectedConfig = resistance;
+var selectedConfig = avalon;
 
 
 function loadScript(selectedCards, playerCount){
@@ -34,7 +34,7 @@ function getEvilThumbsCount(selectedCards, playerCount){
     
     var evilThumbs = evilPlayerMap[playerCount];
 
-    if (selectedCards.find(c => c.id === "blind-spy")){
+    if (selectedCards.find(c => c.id === "blind-spy" || c.id === "oberon")){
         evilThumbs--;
     }
 
@@ -44,7 +44,7 @@ function getEvilThumbsCount(selectedCards, playerCount){
 function getCommanderThumbsCount(selectedCards, playerCount){
     var evilThumbs = evilPlayerMap[playerCount];
 
-    if (selectedCards.find(c => c.id === "deep-cover")){
+    if (selectedCards.find(c => c.id === "deep-cover" || c.id === "mordred")){
         evilThumbs--;
     }
 
@@ -52,10 +52,12 @@ function getCommanderThumbsCount(selectedCards, playerCount){
 }
 
 
+var teams = selectedConfig.teams;
 
 export default selectedConfig;
 
 export {
     loadScript,
-    evilPlayerMap
+    evilPlayerMap,
+    teams
 }

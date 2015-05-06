@@ -1,12 +1,20 @@
 // http://www.redmeeple.com/site/images/Rules/The_Resistance_Avalon_Rules%28EN%29.pdf
 var resistance = {
 
+    "game": "resistance",
+
+    "teams": {
+        "good": "Resistance",
+        "evil": "Spies"
+    },
+
     "cardsCollection": [
         {
             "id": "commander",
             "name": "Commander",
             "team": "good",
             "icon": "resistance",
+            "icon-type": "svg",
             "description": "Knows spies, must remain hidden",
             "dependencies": ["assassin"]
         },
@@ -15,6 +23,7 @@ var resistance = {
             "name": "Body Guard",
             "team": "good",
             "icon": "resistance",
+            "icon-type": "svg",
             "description": "Knows Commander",
             "dependencies": ["commander"]
         },
@@ -23,6 +32,7 @@ var resistance = {
             "name": "Assassin",
             "team": "evil",
             "icon": "spy",
+            "icon-type": "svg",
             "dependencies": ["commander"]
         },
         {
@@ -30,6 +40,7 @@ var resistance = {
             "name": "Blind Spy",
             "team": "evil",
             "icon": "spy",
+            "icon-type": "svg",
             "description": "Unknown to spies"
         },
         {
@@ -37,6 +48,7 @@ var resistance = {
             "name": "False Commander",
             "team": "evil",
             "icon": "spy",
+            "icon-type": "svg",
             "description": "Appears as Commander",
             "dependencies": ["commander", "body-guard"]
         },
@@ -45,6 +57,7 @@ var resistance = {
             "name": "Deep Cover Spy",
             "team": "evil",
             "icon": "spy",
+            "icon-type": "svg",
             "description": "Unknown to Commander",
             "dependencies": ["commander"]
         },

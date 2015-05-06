@@ -26,22 +26,25 @@ function readScript(selectedCards, playerCount) {
     // split by line, trim, and remove any empty elements
     script = script
         .split("\n")
-        .filter((s) => s !== "")
-        .map((s) => s.trim())
+        .map(s => s.trim())
 
         // first, filter out the lines that we don't need
         .filter(function(line){
+
+            // ignore empty lines
+            if (line === "") { return false; }
+
             // look for eg. {commander} and {!commander} and {!commander && blind-spy}
             var match = line.match(/^{(.*?)}/); 
             
             // if this is a regular line, push it through
             if (!match) { return true; }
             
-            var cardIds = match[1].split(/\s*&&\s*/);
+            var cardIds = match[1].split(/\s*&&\s*/); // eg. ["!commander", "blind-spy"]
 
             // for every card in this {}, check them against the selectedCards
             return cardIds.every(function(cardId){
-                var negative = cardId.match(/^!(.*)/);
+                var negative = cardId.match(/^!(.*)/); // if it starts with !
 
                 // if it's not {!...} return if it's in the selectedCards
                 if (!negative){
@@ -85,7 +88,7 @@ function readScript(selectedCards, playerCount) {
 
     // console.log(script);
     
-
+    // read the next line of the script, and pause if needed
     function readNext(){
         var line = script.shift();
 
@@ -109,8 +112,8 @@ function readScript(selectedCards, playerCount) {
         }
     }
 
+    // start reading
     readNext();
-
 
 }
 

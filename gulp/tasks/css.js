@@ -4,65 +4,107 @@ var gulp          = require("gulp"),
     sass          = require("gulp-sass"),
     autoprefixer  = require("gulp-autoprefixer"),
     pixrem        = require("gulp-pixrem"),
-    rename        = require("gulp-rename"),
     header        = require("gulp-header"),
-    concat        = require("gulp-concat");
+    concat        = require("gulp-concat"),
+    rename        = require("gulp-rename"),
+    spritesmith   = require("gulp.spritesmith");
 
 
 
 // dev/default settings
-var css = {
+var styles = {
     src: config.root + "/scss/**/*.scss",
-    watch: config.root + "/scss/**/*.scss",
+    watch: [
+        config.root + "/scss/**/*.scss",
+        config.root + "/img/png-sprite/**/*.png"
+    ],
     dest: config.dest + "/css/",
 
-    filename: "index.css",
+    filename: "index-generated.css",
+
+    sprite: {
+        src: config.root + "/img/png-sprite/**/*.png",
+        imgDest: config.dest + "/css/",
+        imgName: "png-sprite.png",
+        sassName: "_png-sprite-generated.scss",
+        sassDest: config.root + "/scss/"
+    },
 
     sass: {
-        outputStyle: "nested"
-        // includePaths: require("node-neat").includePaths
+        outputStyle: "nested",
+        errLogToConsole: true
     },
 
     autoprefixer: {
-        browsers: ["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1", "ie >= 9"]
+        browsers: ["> 1%", "last 2 versions", "Firefox ESR", "ie >= 9"]
     }
 };
+
+
 
 // production settings
 if (config.env === "prod"){
 
     // compress the sass output on production
-    css.sass.outputStyle = "compressed";
+    styles.sass.outputStyle = "compressed";
 
 }
 
+/**
+ * png-sprite task 
+ *   generate png-sprite image and sass file
+ */
+gulp.task("png", function(){
 
-
-/* css task */
-gulp.task("css", function() {
-
-    var gulpCss = gulp.src(css.src)
-        .pipe(utils.drano())
-        .pipe(sass(css.sass))
-        .pipe(autoprefixer(css.autoprefixer))
-        .pipe(pixrem())
-        .pipe(concat(css.filename))
-        .pipe(rename({
-            suffix: "-generated"
+    // https://www.npmjs.com/package/gulp.spritesmith
+    var spriteStreams = gulp.src(styles.sprite.src)
+        .pipe(spritesmith({
+            imgName: styles.sprite.imgName,
+            cssName: "not-used-but-required.css",
+            cssOpts: {
+                cssSelector: function (item) {
+                    return "." + item.name;
+                }
+            }
         }));
 
+    // write png-sprite.png
+    spriteStreams.img
+        .pipe(gulp.dest(styles.sprite.imgDest));
+
+    // write _png-sprite-generated.scss
+    return spriteStreams.css
+        .pipe(rename(styles.sprite.sassName))
+        .pipe(gulp.dest(styles.sprite.sassDest))
+});
+
+/* css task, wait for png task to finish first, so the png sass file is available and up to date */
+gulp.task("css", ["png"], function(next) {
+
+    // compile sass
+    console.log("SRC", styles.src);
+    var gulpCss = gulp.src(styles.src)
+        .pipe(utils.drano())
+        .pipe(sass(styles.sass))
+        .pipe(autoprefixer(styles.autoprefixer))
+        .pipe(pixrem());
+
     // only add the header text if this css isn't compressed
-    if (css.sass && css.sass.outputStyle !== "compressed"){
+    if (styles.sass && styles.sass.outputStyle !== "compressed"){
         gulpCss.pipe(header("/* This file is generated.  DO NOT EDIT. */ \n"));
     }
-        
-    return gulpCss.pipe(gulp.dest(css.dest));
+
+    // write out css file
+    return gulpCss
+        .pipe(concat(styles.filename))
+        .pipe(gulp.dest(styles.dest));
+
 });
 
 
 // watch css
 if (config.watch){
-    utils.logYellow("watching", "css:", css.watch);
-    gulp.watch(css.watch, ["css"]);
+    utils.logYellow("watching", "css:", styles.watch);
+    gulp.watch(styles.watch, ["css"]);
 }
 

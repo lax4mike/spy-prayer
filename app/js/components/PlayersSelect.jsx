@@ -1,4 +1,4 @@
-import { evilPlayerMap } from "../config/config.js";
+import * as config from "../config/config.js";
 
 var PlayersSelect = React.createClass({
 
@@ -24,7 +24,7 @@ var PlayersSelect = React.createClass({
 
     updatePlayerCount: function(num){
 
-        var evilPlayersCount = evilPlayerMap[num];
+        var evilPlayersCount = config.evilPlayerMap[num];
 
         this.setState({
             playerCount: num,
@@ -39,11 +39,11 @@ var PlayersSelect = React.createClass({
                 <h2>Player count:
                     <span className="player-count">
                         <span className="num">{this.state.goodPlayersCount}</span>
-                        <label>Resistance Members</label>
+                        <label>{config.teams.good}</label>
                     </span>
                     <span className="player-count">
                         <span className="num">{this.state.evilPlayersCount}</span>
-                        <label>Evil spies</label>
+                        <label>{config.teams.evil}</label>
                     </span>
                 </h2>
                 <div className="btn-group">

@@ -1,5 +1,5 @@
 @import "variables";
-
+@import "./_png-sprite-generated.scss";
 
 .card {
     cursor: pointer;
@@ -14,13 +14,11 @@
 
     display: flex;
 
-    &:hover {
-        background-color: $background-hover;
-    }
+    .resistance &:hover { @extend .resistance-hover; }
+    .avalon &:hover { @extend .avalon-hover; }
 
-    &.card--selected {
-        background: $background-selected;
-    }
+    .resistance &.card--selected { @extend .resistance-selected; }
+    .avalon &.card--selected { @extend .avalon-selected; }
 }
 
 
@@ -54,6 +52,13 @@
         height: 30px;
     }
 }
+
+.card__icon--merlin   { @extend .icon-merlin; }
+.card__icon--percival { @extend .icon-percival; }
+.card__icon--assassin { @extend .icon-assassin; }
+.card__icon--oberon   { @extend .icon-oberon; }
+.card__icon--morgana  { @extend .icon-morgana; }
+.card__icon--mordred  { @extend .icon-mordred; }
 
 .card__info {
     flex: 1 1 auto;

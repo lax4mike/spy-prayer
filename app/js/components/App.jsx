@@ -2,6 +2,7 @@ import Cards from "./Cards.jsx";
 import PlayersSelect from "./PlayersSelect.jsx";
 import config from "../config/config.js";
 import * as ScriptReader from "../common/scriptReader";
+import classNames from "../utils/classNames.js";
 
 var cardsCollection = config.cardsCollection;
 var selectedCards = [];
@@ -22,11 +23,18 @@ var App = React.createClass({
     },
 
     render: function(){ 
+
+        var appClasses = classNames("app", config.game);
+
+        var title = (config.game === "avalon") ?
+            "The Resistence Avalon: Spy Prayer" :
+            "The Resistence: Spy Prayer" ;
+
         return (
-            <div className="app">
+            <div className={appClasses}>
                 <header>
                     <div className="header-content">
-                        <h1>The Resistence: Spy Prayer</h1>
+                        <h1>{title}</h1>
                     </div>
                 </header>
                 <main>

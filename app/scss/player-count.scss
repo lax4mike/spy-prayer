@@ -34,10 +34,9 @@
     
     input[type='radio'] {
         display: none;
-    }
 
-    input[type='radio']:checked + span {
-        background: $background-selected;
+        .resistance &:checked + span { @extend .resistance-selected; }
+        .avalon &:checked + span { @extend .avalon-selected; }
     }
 
     span {
@@ -48,11 +47,6 @@
         padding: 0.5rem 1rem;        
     }
 
-    & span:hover {
-        background: $background-hover;
-    }
-
-    &.selected span {
-        background: $background-selected;
-    }
+    .resistance & span:hover { @extend .resistance-hover; }
+    .avalon & span:hover { @extend .avalon-hover; }
 }

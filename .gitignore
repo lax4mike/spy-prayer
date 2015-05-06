@@ -2,3 +2,4 @@
 build_prod/
 node_modules/
 public/
+_png-sprite-generated.scss

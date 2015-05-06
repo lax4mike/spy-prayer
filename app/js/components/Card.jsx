@@ -70,9 +70,16 @@ var Card = React.createClass({
         // http://stackoverflow.com/questions/23402542/embedding-svg-into-reactjs
         var svgHtml = {__html: "<svg><use  xlink:href='img/svg-sprite.svg#icon-" + this.props.card.icon + "'></use></svg>"};
 
+        if (this.props.card["icon-type"] === "png"){
+            var icon = <div className={classIcon}></div>
+        }
+        else if (this.props.card["icon-type"] === "svg"){
+            var icon = <div className={classIcon} dangerouslySetInnerHTML={svgHtml}></div>;
+        }
+
         return (
             <div className={classCard} onClick={this.handleClick}>
-                <div className={classIcon} dangerouslySetInnerHTML={svgHtml}></div>
+                {icon}
                 <div className="card__info">
                     <div className="card__name">{this.props.card.name}</div>
                     <div className="card__description">{this.props.card.description}</div>

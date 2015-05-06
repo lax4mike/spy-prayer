@@ -4,8 +4,11 @@ $container-padding: 0.5rem;
 $border-radius: 5px;
 $border-color: #ddd;
 
-$background-selected: #dff2bf;
-$background-hover: #f3f3f3;
-
 $spy-red: #e12;
 $resistance-blue: #5ab;
+
+.resistance-hover { background: #f3f3f3; }
+.resistance-selected { background: #dff2bf; }
+
+.avalon-hover { background: #f3f3f3; }
+.avalon-selected {  background: #cce6ff; }

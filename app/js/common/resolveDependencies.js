@@ -15,7 +15,7 @@ function resolveByAdding(selectedCards){
 
     // boolean, whether or not the given card id is in the resolve collection
     var isInResolved = function(cid) {
-        return (resolved.find((c) => c.id === cid) !== undefined);
+        return (resolved.find(c => c.id === cid) !== undefined);
     };
 
     // recursive function to resolve a single card
@@ -29,7 +29,7 @@ function resolveByAdding(selectedCards){
             card.dependencies.forEach(function(cid, i){
                 
                 if (!isInResolved(cid)){
-                    var depCard = allCards.find((c) => c.id === cid);
+                    var depCard = allCards.find(c => c.id === cid);
                     resolveCard(depCard);
                 }
             });
@@ -47,17 +47,17 @@ function resolveByAdding(selectedCards){
 // given the selected cards, resolve the dependencies by removing cards
 function resolveByRemoving(selectedCards){
 
-    // copy selected cards into a resolve, we'll remove from here
+    // make a copy of the selected cards, we'll remove from here
     var resolved = selectedCards.slice(0);
 
-    // boolean, whether or not the given card id is in the resolve collection
+    // boolean, whether or not the given card id is in the resolved collection
     var isInResolved = function(cid) {
-        return (resolved.find((c) => c.id === cid) !== undefined);
+        return (resolved.find(c => c.id === cid) !== undefined);
     };
 
     // find the given card id in the resolved collection, and remove it
     var removeFromResolved = function(cid){
-        var index = resolved.findIndex((c) => c.id === cid);
+        var index = resolved.findIndex(c => c.id === cid);
         resolved.splice(index, 1);
     };
 
@@ -65,19 +65,17 @@ function resolveByRemoving(selectedCards){
     selectedCards.forEach(function(card){
 
         if (card.dependencies) {
-            // check to see if this card's dependencies are present
-            card.dependencies.some(function(cid, i){
-                // if one of this cards dependencies isn't present, remove this card
-                if (!isInResolved(cid)) { 
-                    removeFromResolved(card.id); 
-                    return true; // will break .some
-                }
-            });
+
+            // check to see if one of this card's dependencies is missing
+            var dependencyMissing = card.dependencies.some(cid => !isInResolved(cid));
+
+            // if one of this cards dependencies isn't present, remove this card
+            if (dependencyMissing) { removeFromResolved(card.id); }
         }
     });
 
 
-    // if we removed any cards, resovle again 
+    // if we removed any cards, resolve again 
     if (selectedCards.length !== resolved.length){
         return resolveByRemoving(resolved);
     }
