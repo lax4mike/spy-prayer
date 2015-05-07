@@ -1,4 +1,4 @@
-import * as Speaker from "../common/speaker";
+ import * as Speaker from "../common/speaker";
 import * as config from "../config/config.js";
 import "../utils/Array.prototype.includes.js";
 
@@ -88,15 +88,22 @@ function readScript(selectedCards, playerCount) {
 
     // console.log(script);
     
+    // make the delays longer when there are more people
+    var starDelay = (playerCount * 75) + 500;
+
     // read the next line of the script, and pause if needed
     function readNext(){
         var line = script.shift();
 
-        if (!line) { return; } // we're done
+        // we're done
+        if (!line) { console.timeEnd("total prayer time"); return; } 
 
         // if this line contains any *
         var delays = line.match(/^\*+$/);
-        var timeout = (delays) ? delays[0].length * 1000 : 0;
+        var timeout = (delays) ? delays[0].length * starDelay : 0;
+        
+        // if the delay is a single *, it's just a pause in speaking
+        if (delays && delays[0].length === 1) { timeout = 1; } 
 
         console.log(timeout, line);
 
@@ -107,13 +114,17 @@ function readScript(selectedCards, playerCount) {
         }
         else {
             Speaker.speak(line, function(){
+                console.timeEnd("speak time");
                 readNext();
             });
+            console.time("speak time");
         }
     }
 
     // start reading
     readNext();
+
+    console.time("total prayer time");
 
 }
 

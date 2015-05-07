@@ -74,9 +74,9 @@ var resistance = {
 
         * You should see #{evilThumbsCount}.
 
-        ****
+        *****
 
-        {!merlin} Minions of Mordred, lower your thumbs and close your eyes. **
+        {!merlin} Minions of Mordred, lower your thumbs and close your eyes. *
 
         {merlin && mordred}  Mordred, close your eyes and lower your thumb. *
         {merlin && mordred}  All other Minions of Mordred, 
@@ -86,7 +86,7 @@ var resistance = {
         {merlin} close your eyes, but keep your thumbs up so that Merlin will know of you scum. *
         {merlin} Merlin, open your eyes and observe the dirty thumbs of the traitors.
         {merlin} * You should see #{commanderThumbsCount}. 
-        {merlin} ****
+        {merlin} *****
         {merlin} Minions of Mordred, put your thumbs down. 
         {merlin} * Merlin, close your eyes.
 
@@ -98,13 +98,13 @@ var resistance = {
 
         {percival && morgona} * Percival, open your eyes and observe two thumbs. One of them is the omniscient wizard, the other is a filthy imposter.
 
-        {percival} **
+        {percival} ***
 
         {percival && !morgona} Merlin, put your thumb down. * 
         {percival && morgona} Merlin, and Morgona, put your thumbs down. * 
         {percival} Percival, close your eyes. * 
 
-        All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes.
+        All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes. It is now time to play, The Resistance Avalon.
         `
 };
 

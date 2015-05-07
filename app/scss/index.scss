@@ -42,7 +42,6 @@ body {
 
 h1 {
     font-size: 1em;
-    text-align: center;
 
     .avalon & {
         font-size: 1em;
@@ -73,15 +72,17 @@ header {
     box-sizing: border-box;
 
     .header-content {
-        max-width: $container-max-width;
+        max-width: 100%;
+        width: $container-good-width;
         margin: auto;
         padding: 0 $container-padding;
+        text-align: center;
     }
 }
 
 main {
     flex: 0 1 auto;
-    width: $container-max-width;
+    width: $container-good-width;
     max-width: 100%;
     box-sizing: border-box;
     padding: 0 $container-padding;
@@ -92,9 +93,23 @@ footer {
     flex: 0 0 auto;
     padding: 0.5em;
     box-sizing: border-box;
-    width: $container-max-width;
-    box-sizing: border-box;
+    width: $container-good-width;
     max-width: 100%;
+}
+
+    
+// move to 3 columns if the device is landscape and short
+@media (max-height: 475px) and (orientation: landscape)  {
+
+    main,
+    footer,
+    header .header-content {
+        width: 600px;
+    }
+
+    .card {
+        flex: 0 0 33.33333333%;
+    }
 }
 
 

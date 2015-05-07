@@ -7,12 +7,21 @@ import classNames from "../utils/classNames.js";
 var cardsCollection = config.cardsCollection;
 var selectedCards = [];
 var playerCount = 0;
+var title = ""; // title for page and header
 
 var App = React.createClass({
 
     componentWillMount: function(){
         // add avalon or resistance class to the body
         $("body").addClass(config.game);
+        
+        title = (config.game === "avalon") ?
+            "The Resistence Avalon: Spy Prayer" :
+            "The Resistence: Spy Prayer";
+
+        // update the page title also
+        $("title").text(title);
+
     },
 
     onPlayerCountChange: function(num){
@@ -31,9 +40,7 @@ var App = React.createClass({
 
         var appClasses = classNames("app");
 
-        var title = (config.game === "avalon") ?
-            "The Resistence Avalon: Spy Prayer" :
-            "The Resistence: Spy Prayer" ;
+
 
         return (
             <div className={appClasses}>
