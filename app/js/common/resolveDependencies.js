@@ -1,8 +1,7 @@
-import config from "../config/config.js";
+import * as config from "../config/config.js";
 import "../utils/Array.prototype.find.js";
 import "../utils/Array.prototype.findIndex.js";
 
-var allCards = config.cardsCollection;
 
 // import usage:
 // import * as resolveDependencies from ".resolveDependencies.js";
@@ -10,6 +9,8 @@ var allCards = config.cardsCollection;
 
 // given the selected cards, resolve the dependencies by adding cards
 function resolveByAdding(selectedCards){
+
+    var allCards = config.getCardsCollection();
 
     var resolved = [];
 

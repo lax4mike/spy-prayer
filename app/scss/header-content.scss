@@ -1,0 +1,29 @@
+.header-content {
+
+	position: relative;
+	box-sizing: border-box;
+
+	
+	h1 {
+		display: inline-block;
+	}
+
+	.options-btn {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		vertical-align: middle;
+	}
+}
+
+
+.options-btn {
+	content: "";
+	height: 1em;
+	width: 1em;
+	cursor: pointer;
+	background: black;
+	border-radius: 50%;	
+	margin: 0 0.5em;
+}

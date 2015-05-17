@@ -1,59 +1,99 @@
-import Cards from "./Cards.jsx";
+import Header        from "./Header.jsx";
+import OptionsPanel  from "./OptionsPanel.jsx";
+import Cards         from "./Cards.jsx";
 import PlayersSelect from "./PlayersSelect.jsx";
-import config from "../config/config.js";
-import * as ScriptReader from "../common/scriptReader";
-import classNames from "../utils/classNames.js";
 
-var cardsCollection = config.cardsCollection;
-var selectedCards = [];
-var playerCount = 0;
-var title = ""; // title for page and header
+import * as config       from "../config/config.js";
+import * as ScriptReader from "../common/scriptReader";
+
 
 var App = React.createClass({
 
+    getInitialState: function(){
+        return {
+            optionsPanelIsActive : false,
+            game                 : config.getGame(),
+            cardsCollection      : config.getCardsCollection(),
+            selectedCards        : [],
+            playerCount          : 0,
+            title                : "", // title for page and header
+        };
+    },
+
     componentWillMount: function(){
+        this.componentDidUpdate();
+        this.onGameChange(config.getGame());
+    },
+
+    componentDidUpdate: function(){
+
         // add avalon or resistance class to the body
-        $("body").addClass(config.game);
+        $("body").attr("class", this.state.game);
         
-        title = (config.game === "avalon") ?
-            "The Resistence Avalon: Spy Prayer" :
-            "The Resistence: Spy Prayer";
-
         // update the page title also
-        $("title").text(title);
-
+        $("title").text(this.state.title);
+    
     },
 
     onPlayerCountChange: function(num){
-        playerCount = num;
+        this.setState({
+            playerCount: num
+        });
     },
 
     onCardsChange: function(cards){
-        selectedCards = cards;    
+        this.setState({ selectedCards: cards });
+    },
+
+    onOptionsClick: function(){
+        // toggle options panel
+        this.setState({ optionsPanelIsActive: !this.state.optionsPanelIsActive });
+    },
+
+    onGameChange: function(game){
+
+        // load the config for "resistance" or "avalon"
+        config.loadConfig(game);
+
+        var title = (config.getGame() === "avalon") ?
+            "The Resistence Avalon: Spy Prayer" :
+            "The Resistence: Spy Prayer";
+
+        this.setState({
+            game: game,
+            cardsCollection: config.getCardsCollection(),   
+            title: title,
+            selectedCards: [], 
+            optionsPanelIsActive: false // close the options panel
+        });
     },
 
     playScript: function(){
-        ScriptReader.readScript(selectedCards, playerCount);
+        ScriptReader.readScript(this.state.selectedCards, this.state.playerCount);
     },
 
     render: function(){ 
 
-        var appClasses = classNames("app");
-
-
-
         return (
-            <div className={appClasses}>
-                <header>
-                    <div className="header-content">
-                        <h1>{title}</h1>
-                    </div>
-                </header>
+            <div className="app">
+                <Header title={this.state.title} 
+                    onOptionsClick={this.onOptionsClick}>
+                </Header>
                 <main>    
+                    <OptionsPanel 
+                        optionsPanelIsActive={this.state.optionsPanelIsActive}
+                        game={this.state.game}
+                        onGameChange={this.onGameChange}>
+                    </OptionsPanel>
                     <PlayersSelect onChange={this.onPlayerCountChange}></PlayersSelect>
-                    <Cards cardsCollection={cardsCollection} onChange={this.onCardsChange} />
+                    <Cards 
+                        cardsCollection={this.state.cardsCollection} 
+                        onChange={this.onCardsChange} 
+                        selectedCards={this.state.selectedCards}/>
                     <footer>
-                        <button onClick={this.playScript} className="play-btn"><span className="sub">Bow your heads and</span> Pray</button>
+                        <button onClick={this.playScript} className="play-btn">
+                            <span className="sub">Bow your heads and</span> Pray
+                        </button>
                     </footer>
                 </main>
             </div>

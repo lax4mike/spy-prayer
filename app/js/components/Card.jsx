@@ -32,17 +32,11 @@ var Card = React.createClass({
         });
 
         // needs to be deferred so the state has a chance to update
-        setTimeout(function(){
+        setTimeout(() => {
             if (this.props.onClick){
                 this.props.onClick(this.props.card.name, this.state.selected);
             } 
-        }.bind(this), 0);
-    },
-
-    // update only if the state is different
-    shouldComponentUpdate: function(nextProps, nextState){
-        return this.state.selected !== nextState.selected
-            || this.state.selected !== nextProps.selected;
+        }, 0);
     },
 
     componentWillUpdate: function(nextProps, nextState){

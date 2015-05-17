@@ -1,5 +1,7 @@
 import * as config from "../config/config.js";
 
+var teams = config.getTeams();
+
 var PlayersSelect = React.createClass({
 
     propTypes: {
@@ -19,7 +21,7 @@ var PlayersSelect = React.createClass({
     },  
 
     componentDidUpdate: function(){
-        this.props.onChange(this.state.playerCount);
+
     },
 
     updatePlayerCount: function(num){
@@ -31,6 +33,10 @@ var PlayersSelect = React.createClass({
             evilPlayersCount: evilPlayersCount,
             goodPlayersCount: num - evilPlayersCount
         });
+
+        setTimeout(() => {
+            this.props.onChange(this.state.playerCount);
+        }, 0);
     },
 
     render: function(){
@@ -41,11 +47,11 @@ var PlayersSelect = React.createClass({
                     <span className="avoid-wrap">
                         <span className="player-count">
                             <span className="num">{this.state.goodPlayersCount}</span>
-                            <label>{config.teams.good}</label>
+                            <label>{teams.good}</label>
                         </span>
                         <span className="player-count">
                             <span className="num">{this.state.evilPlayersCount}</span>
-                            <label>{config.teams.evil}</label>
+                            <label>{teams.evil}</label>
                         </span>
                     </span>
                 </h2>

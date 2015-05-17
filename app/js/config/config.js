@@ -1,7 +1,16 @@
 import resistance from "./resistance.js";
 import avalon from "./avalon.js";
 
-var selectedConfig = avalon;
+var selectedConfig = resistance;
+
+function loadConfig(which){
+    if (which === "resistance"){
+        selectedConfig = resistance;
+    }
+    if (which === "avalon"){
+        selectedConfig = avalon;
+    }
+}
 
 
 function loadScript(selectedCards, playerCount){
@@ -52,12 +61,25 @@ function getCommanderThumbsCount(selectedCards, playerCount){
 }
 
 
-var teams = selectedConfig.teams;
+function getTeams(){
+    return selectedConfig.teams;
+}
+
+function getCardsCollection(){
+    return selectedConfig.cardsCollection;
+}
+
+function getGame() {
+    return selectedConfig.game;
+}
 
 export default selectedConfig;
 
 export {
+    loadConfig,
     loadScript,
     evilPlayerMap,
-    teams
+    getTeams,
+    getCardsCollection,
+    getGame
 }
