@@ -5,12 +5,13 @@ var teams = config.getTeams();
 var PlayersSelect = React.createClass({
 
     propTypes: {
-        onChange: React.PropTypes.func
+        onChange    : React.PropTypes.func,
+        playerCount : React.PropTypes.number
     },
 
     getInitialState: function() {
         return {
-            playerCount: 5,
+            playerCount: this.props.playerCount || 5,
             evilPlayersCount: 2,
             goodPlayersCount: 3
         }
@@ -40,6 +41,9 @@ var PlayersSelect = React.createClass({
     },
 
     render: function(){
+
+        var teams = config.getTeams();
+
         return (
             <div className="player-select">
                 <h2>

@@ -121,7 +121,9 @@ var App = React.createClass({
                         game={this.state.game}
                         onGameChange={this.onGameChange}>
                     </OptionsPanel>
-                    <PlayersSelect onChange={this.onPlayerCountChange}></PlayersSelect>
+                    <PlayersSelect 
+                        onChange={this.onPlayerCountChange} 
+                        playerCount={this.state.playerCount} />
                     <Cards 
                         cardsCollection={config.getCardsCollection()} 
                         onChange={this.onCardsChange} 
