@@ -6,6 +6,7 @@ import PlayersSelect from "./PlayersSelect.jsx";
 import * as config       from "../config/config.js";
 import * as ScriptReader from "../common/scriptReader";
 
+var localStorageKey = "spy-prayer-state";
 
 var App = React.createClass({
 
@@ -13,7 +14,6 @@ var App = React.createClass({
         return {
             optionsPanelIsActive : false,
             game                 : config.getGame(),
-            cardsCollection      : config.getCardsCollection(),
             selectedCards        : [],
             playerCount          : 0,
             title                : "", // title for page and header
@@ -21,8 +21,16 @@ var App = React.createClass({
     },
 
     componentWillMount: function(){
-        this.componentDidUpdate();
-        this.onGameChange(config.getGame());
+
+        // try to load from localstorage
+        var loaded = this.loadStateFromLocalStorage();
+
+        // if we didn't find anything in local storage, initialize crap
+        if (!loaded){
+            this.onGameChange(config.getGame());
+            this.componentDidUpdate();
+        };
+
     },
 
     componentDidUpdate: function(){
@@ -32,7 +40,36 @@ var App = React.createClass({
         
         // update the page title also
         $("title").text(this.state.title);
+
+        this.saveStateToLocalStorage();
     
+    },
+
+    componentWillUpdate: function(newProps, newState){
+
+        var title = (config.getGame() === "avalon") ?
+            "The Resistence Avalon: Spy Prayer" :
+            "The Resistence: Spy Prayer";
+
+        if (this.state.title !== title){
+            this.setState({
+                title: title
+            });  
+        } 
+    },
+
+    loadStateFromLocalStorage: function(){
+        if (localStorage[localStorageKey]){
+            // load the correct config and update state
+            var localStorageState = JSON.parse(localStorage[localStorageKey]);
+            config.loadConfig(localStorageState.game);
+            this.setState(localStorageState);
+            return true;
+        }
+    },
+
+    saveStateToLocalStorage: function(){
+        localStorage[localStorageKey] = JSON.stringify(this.state);
     },
 
     onPlayerCountChange: function(num){
@@ -54,14 +91,13 @@ var App = React.createClass({
 
         // load the config for "resistance" or "avalon"
         config.loadConfig(game);
-
+ 
         var title = (config.getGame() === "avalon") ?
             "The Resistence Avalon: Spy Prayer" :
             "The Resistence: Spy Prayer";
 
         this.setState({
             game: game,
-            cardsCollection: config.getCardsCollection(),   
             title: title,
             selectedCards: [], 
             optionsPanelIsActive: false // close the options panel
@@ -87,9 +123,9 @@ var App = React.createClass({
                     </OptionsPanel>
                     <PlayersSelect onChange={this.onPlayerCountChange}></PlayersSelect>
                     <Cards 
-                        cardsCollection={this.state.cardsCollection} 
+                        cardsCollection={config.getCardsCollection()} 
                         onChange={this.onCardsChange} 
-                        selectedCards={this.state.selectedCards}/>
+                        selectedCards={this.state.selectedCards} />
                     <footer>
                         <button onClick={this.playScript} className="play-btn">
                             <span className="sub">Bow your heads and</span> Pray
