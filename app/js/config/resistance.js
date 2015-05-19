@@ -84,6 +84,9 @@ var resistance = {
         {commander && !deep-cover} Spies,
 
         {commander} close your eyes, but keep your thumbs up so that the Commander will know of you scum. *
+
+        {commander && blind-spy} Blind Spy, put up your thumb and keep your eyes closed. *
+
         {commander} Commander, open your eyes and observe the dirty thumbs of the traitors.
         {commander} * You should see #{commanderThumbsCount}. 
         {commander} *****

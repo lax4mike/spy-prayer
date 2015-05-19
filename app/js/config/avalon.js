@@ -84,6 +84,9 @@ var resistance = {
         {merlin && !mordred} Minions of Mordred,
         
         {merlin} close your eyes, but keep your thumbs up so that Merlin will know of you scum. *
+
+        {merlin && oberon} Oberon, put up your thumb and keep your eyes closed. *
+
         {merlin} Merlin, open your eyes and observe the dirty thumbs of the traitors.
         {merlin} * You should see #{commanderThumbsCount}. 
         {merlin} *****
