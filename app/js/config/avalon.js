@@ -36,8 +36,8 @@ var resistance = {
             "dependencies": ["merlin"]
         },
         {
-            "id": "morgona",
-            "name": "Morgona",
+            "id": "morgana",
+            "name": "Morgana",
             "team": "evil",
             "icon": "morgana",
             "icon-type": "png",
@@ -91,17 +91,17 @@ var resistance = {
         {merlin} * Merlin, close your eyes.
 
         {percival} * Merlin 
-        {morgona} , and Morgona
+        {morgana} , and Morgana
         {percival}, extend your thumb so that Percival may know of you. 
 
-        {percival && !morgona} * Percival, open your eyes and observe Merlin's white beard.  Protect him with your life.
+        {percival && !morgana} * Percival, open your eyes and observe Merlin's white beard.  Protect him with your life.
 
-        {percival && morgona} * Percival, open your eyes and observe two thumbs. One of them is the omniscient wizard, the other is a filthy imposter.
+        {percival && morgana} * Percival, open your eyes and observe two thumbs. One of them is the omniscient wizard, the other is a filthy imposter.
 
         {percival} ***
 
-        {percival && !morgona} Merlin, put your thumb down. * 
-        {percival && morgona} Merlin, and Morgona, put your thumbs down. * 
+        {percival && !morgana} Merlin, put your thumb down. * 
+        {percival && morgana} Merlin, and Morgana, put your thumbs down. * 
         {percival} Percival, close your eyes. * 
 
         All players should have their eyes closed and hands in a fist in front of them. Everyone, open your eyes. It is now time to play, The Resistance Avalon.
