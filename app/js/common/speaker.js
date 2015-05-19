@@ -6,8 +6,6 @@ if (!('speechSynthesis' in window)) {
 }
 
 
-
-
 // create utterance object
 var utterance = new SpeechSynthesisUtterance();
 
@@ -28,11 +26,11 @@ window.speechSynthesis.onvoiceschanged = function() {
     utterance.voice = voice; // Note: some voices don't support altering params
 }
 
-// utterance.voiceURI = 'native';
-// utterance.volume = 1; // 0 to 1
-// utterance.rate = 1; // 0.1 to 10
-// utterance.pitch = 2; //0 to 2
-// utterance.lang = 'en-US';
+utterance.voiceURI = 'native';
+utterance.volume = 1; // 0 to 1
+utterance.rate = 1; // 0.1 to 10
+utterance.pitch = 1; //0 to 2
+utterance.lang = 'en-US';
 
 
 
@@ -40,12 +38,13 @@ window.speechSynthesis.onvoiceschanged = function() {
 
 // set the utterance text and speak it
 function speak(text, callback) {
-
     utterance.onend = callback;
-
     utterance.text = text;
     speechSynthesis.speak(utterance);
 }
 
+function stop(){
+    speechSynthesis.cancel();
+}
 
-export { speak };
+export { speak, stop };

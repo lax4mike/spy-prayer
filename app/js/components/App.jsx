@@ -1,6 +1,7 @@
 import Header        from "./Header.jsx";
 import OptionsPanel  from "./OptionsPanel.jsx";
 import Cards         from "./Cards.jsx";
+import PlayBtn       from "./PlayBtn.jsx";
 import PlayersSelect from "./PlayersSelect.jsx";
 
 import * as config       from "../config/config.js";
@@ -17,6 +18,7 @@ var App = React.createClass({
             selectedCards        : [],
             playerCount          : 0,
             title                : "", // title for page and header
+            isPlaying            : false
         };
     },
 
@@ -60,12 +62,19 @@ var App = React.createClass({
 
     loadStateFromLocalStorage: function(){
         if (localStorage[localStorageKey]){
+
             // load the correct config and update state
             var localStorageState = JSON.parse(localStorage[localStorageKey]);
             config.loadConfig(localStorageState.game);
+            
+            localStorageState.isPlaying = false; // always start NOT playing
+            
             this.setState(localStorageState);
+
             return true;
         }
+
+        return false;
     },
 
     saveStateToLocalStorage: function(){
@@ -104,8 +113,24 @@ var App = React.createClass({
         });
     },
 
-    playScript: function(){
-        ScriptReader.readScript(this.state.selectedCards, this.state.playerCount);
+    onPlayBtnClick: function(){
+
+        if (this.state.isPlaying){
+            ScriptReader.stop();
+        }
+        else {
+            ScriptReader.readScript(this.state.selectedCards, this.state.playerCount, 
+                function(){
+                    this.setState({
+                        isPlaying: false
+                    });
+                }.bind(this));    
+        }
+
+        this.setState({
+            isPlaying: !this.state.isPlaying
+        });
+ 
     },
 
     render: function(){ 
@@ -129,9 +154,9 @@ var App = React.createClass({
                         onChange={this.onCardsChange} 
                         selectedCards={this.state.selectedCards} />
                     <footer>
-                        <button onClick={this.playScript} className="play-btn">
-                            <span className="sub">Bow your heads and</span> Pray
-                        </button>
+                        <PlayBtn 
+                            onClick={this.onPlayBtnClick}
+                            isPlaying={this.state.isPlaying} />
                     </footer>
                 </main>
             </div>

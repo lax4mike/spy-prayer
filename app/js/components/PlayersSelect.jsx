@@ -11,9 +11,7 @@ var PlayersSelect = React.createClass({
 
     getInitialState: function() {
         return {
-            playerCount: this.props.playerCount || 5,
-            evilPlayersCount: 2,
-            goodPlayersCount: 3
+            playerCount: this.props.playerCount || 5
         }
     },
 
@@ -27,12 +25,8 @@ var PlayersSelect = React.createClass({
 
     updatePlayerCount: function(num){
 
-        var evilPlayersCount = config.evilPlayerMap[num];
-
         this.setState({
-            playerCount: num,
-            evilPlayersCount: evilPlayersCount,
-            goodPlayersCount: num - evilPlayersCount
+            playerCount: num
         });
 
         setTimeout(() => {
@@ -44,17 +38,20 @@ var PlayersSelect = React.createClass({
 
         var teams = config.getTeams();
 
+        var evilPlayersCount = config.evilPlayerMap[this.state.playerCount];
+        var goodPlayersCount = this.state.playerCount - evilPlayersCount;
+
         return (
             <div className="player-select">
                 <h2>
                     <span className="avoid-wrap">Player count:</span>
                     <span className="avoid-wrap">
                         <span className="player-count">
-                            <span className="num">{this.state.goodPlayersCount}</span>
+                            <span className="num">{goodPlayersCount}</span>
                             <label>{teams.good}</label>
                         </span>
                         <span className="player-count">
-                            <span className="num">{this.state.evilPlayersCount}</span>
+                            <span className="num">{evilPlayersCount}</span>
                             <label>{teams.evil}</label>
                         </span>
                     </span>

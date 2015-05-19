@@ -1,4 +1,4 @@
- import * as Speaker from "../common/speaker";
+import * as Speaker from "../common/speaker";
 import * as config from "../config/config.js";
 import "../utils/Array.prototype.includes.js";
 
@@ -13,12 +13,14 @@ import "../utils/Array.prototype.includes.js";
     The astericks * can be anywhere in the string
 */
 
-function readScript(selectedCards, playerCount) {
+// shared so readScript and stop both can access it
+var script = [];
 
+function readScript(selectedCards, playerCount, callback) {
 
 
     // load the script and interpolate any #{variables}
-    var script = config.loadScript(selectedCards, playerCount);
+    script = config.loadScript(selectedCards, playerCount);
 
     var selectedCardIds = selectedCards.map(c => c.id);
     
@@ -96,7 +98,10 @@ function readScript(selectedCards, playerCount) {
         var line = script.shift();
 
         // we're done
-        if (!line) { console.timeEnd("total prayer time"); return; } 
+        if (!line) { 
+            console.timeEnd("total prayer time"); 
+            return callback();
+        } 
 
         // if this line contains any *
         var delays = line.match(/^\*+$/);
@@ -128,5 +133,10 @@ function readScript(selectedCards, playerCount) {
 
 }
 
-export { readScript };
+function stop(){
+    script = [];
+    Speaker.stop();
+}
+
+export { readScript, stop };
 
