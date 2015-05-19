@@ -1,4 +1,5 @@
 import classNames from "../utils/classNames.js";
+import SvgIcon from "./SvgIcon.jsx";
 
 /* 
 {
@@ -61,14 +62,15 @@ var Card = React.createClass({
             "card__icon--" + this.props.card.icon.toLowerCase()
         );
 
-        // http://stackoverflow.com/questions/23402542/embedding-svg-into-reactjs
-        var svgHtml = {__html: "<svg><use  xlink:href='img/svg-sprite.svg#icon-" + this.props.card.icon + "'></use></svg>"};
-
+        // for avalon images
         if (this.props.card["icon-type"] === "png"){
             var icon = <div className={classIcon}></div>
         }
+        // for resistance svgs
         else if (this.props.card["icon-type"] === "svg"){
-            var icon = <div className={classIcon} dangerouslySetInnerHTML={svgHtml}></div>;
+            var icon = <div className={classIcon}>
+                           <SvgIcon href={"img/svg-sprite.svg#icon-" + this.props.card.icon} />
+                       </div>;
         }
 
         return (

@@ -138,7 +138,8 @@ var App = React.createClass({
         return (
             <div className="app">
                 <Header title={this.state.title} 
-                    onOptionsClick={this.onOptionsClick}>
+                    onOptionsClick={this.onOptionsClick}
+                    optionsPanelIsActive={this.state.optionsPanelIsActive}>
                 </Header>
                 <main>    
                     <OptionsPanel 
