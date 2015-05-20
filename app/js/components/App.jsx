@@ -4,6 +4,8 @@ import Cards         from "./Cards.jsx";
 import PlayBtn       from "./PlayBtn.jsx";
 import PlayersSelect from "./PlayersSelect.jsx";
 
+import classNames from "../utils/classNames.js";
+
 import * as config       from "../config/config.js";
 import * as ScriptReader from "../common/scriptReader";
 
@@ -50,7 +52,7 @@ var App = React.createClass({
     componentWillUpdate: function(newProps, newState){
 
         var title = (config.getGame() === "avalon") ?
-            "The Resistence Avalon: Spy Prayer" :
+            "Avalon: Spy Prayer" :
             "The Resistence: Spy Prayer";
 
         if (this.state.title !== title){
@@ -100,14 +102,9 @@ var App = React.createClass({
 
         // load the config for "resistance" or "avalon"
         config.loadConfig(game);
- 
-        var title = (config.getGame() === "avalon") ?
-            "The Resistence Avalon: Spy Prayer" :
-            "The Resistence: Spy Prayer";
 
         this.setState({
             game: game,
-            title: title,
             selectedCards: [], 
             optionsPanelIsActive: false // close the options panel
         });
@@ -135,31 +132,41 @@ var App = React.createClass({
 
     render: function(){ 
 
+        var classes = classNames(
+            "app",
+            { "app--options-active": this.state.optionsPanelIsActive }
+        );
+
         return (
-            <div className="app">
+            <div className={classes}>
                 <Header title={this.state.title} 
                     onOptionsClick={this.onOptionsClick}
                     optionsPanelIsActive={this.state.optionsPanelIsActive}>
                 </Header>
                 <main>    
+                    <div className="home">
+
+                        <PlayersSelect 
+                            onChange={this.onPlayerCountChange} 
+                            playerCount={this.state.playerCount} />
+                        <Cards 
+                            cardsCollection={config.getCardsCollection()} 
+                            onChange={this.onCardsChange} 
+                            selectedCards={this.state.selectedCards} />
+
+                        <footer>
+                            <PlayBtn 
+                                onClick={this.onPlayBtnClick}
+                                isPlaying={this.state.isPlaying} />
+                        </footer>
+                    </div>
+                    
                     <OptionsPanel 
                         optionsPanelIsActive={this.state.optionsPanelIsActive}
                         game={this.state.game}
-                        onGameChange={this.onGameChange}>
-                    </OptionsPanel>
-                    <PlayersSelect 
-                        onChange={this.onPlayerCountChange} 
-                        playerCount={this.state.playerCount} />
-                    <Cards 
-                        cardsCollection={config.getCardsCollection()} 
-                        onChange={this.onCardsChange} 
-                        selectedCards={this.state.selectedCards} />
-                    <footer>
-                        <PlayBtn 
-                            onClick={this.onPlayBtnClick}
-                            isPlaying={this.state.isPlaying} />
-                    </footer>
+                        onGameChange={this.onGameChange} />
                 </main>
+               
             </div>
         );
     }

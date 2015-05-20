@@ -77,7 +77,7 @@ header {
         max-width: 100%;
         width: $container-good-width;
         margin: auto;
-        padding: 0 $container-padding;
+        padding: 0 calc(24px + 0.5rem); // room for settings icon
         text-align: center;
     }
 }

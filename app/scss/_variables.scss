@@ -8,7 +8,9 @@ $border-color: #ddd;
 $spy-red: #e12;
 $resistance-blue: #5ab;
 
-%resistance-hover { background: #f3f3f3; }
+$hover-color: #f3f3f3;
+
+%resistance-hover { background: none; }
 %resistance-selected { background: #dff2bf; }
 %resistance-button { 
     background: none; 

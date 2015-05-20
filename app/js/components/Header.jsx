@@ -27,10 +27,11 @@ var Header = React.createClass({
                 <div className="header-content">
                     <h1>{this.props.title}</h1>
 
-                    <div className={classes} onClick={this.onOptionsClick}>
-                        <SvgIcon href={"img/svg-sprite.svg#icon-settings"} />
+                    <div className="options-btn-holder" onClick={this.onOptionsClick}>
+                        <div className={classes}>
+                            <span> toggle menu </span>
+                        </div>
                     </div>
-
 
                 </div>
             </header>

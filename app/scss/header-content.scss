@@ -8,10 +8,12 @@
         display: inline-block;
     }
 
-    .options-btn {
+    .options-btn-holder {
         position: absolute;
         right: 0;
         top: 50%;
+        // background: honeydew;
+        padding: 1rem 0.5rem 1rem 1.5rem; // big hit area
         transform: translateY(-50%);
         vertical-align: middle;
     }
@@ -19,13 +21,60 @@
 
 
 .options-btn {
-    content: "";
-    height: 16px;
-    width: 16px;
+    height: 18px;
+    width: 24px;
     cursor: pointer;
     margin: 0 0.5em;
+    // background: honeydew;
+    position: relative;
+    transition: all 0.25s;
+
+    // hide text;
+    font-size: 0;
+    text-indent: -9999px;
+
+    span,
+    &:before,
+    &:after {
+        background: #444;
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 3px;
+        content: "";
+        transition: all 0.25s;
+        opacity: 1;
+    }
+    span {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &::before {
+        top: 0;
+    }
+
+    &::after {
+        bottom: 0;
+    }
 
     &.is-active  {
+
+        transform: rotate(90deg);
+
+        span {
+            opacity: 0;
+        }
+
+        &::before {
+            transform: rotate(135deg);
+            top: 50%;
+        }
+
+        &::after {
+            transform: rotate(45deg);
+            top: 50%;
+        }
+
     }
 
     svg {
