@@ -69,6 +69,9 @@ function readScript(selectedCards, playerCount, callback) {
         
             // add some dilimiters around the *'s so we can split by them later
             line = line.replace(/(\*+)/g, "{split-here}$1{split-here}");
+
+            // split by periods
+            // line = line.replace(/(\.)/g, ".{split-here}");
         
             // return the line without the {commander}
             return line.trim();
@@ -100,6 +103,7 @@ function readScript(selectedCards, playerCount, callback) {
         // we're done
         if (!line) { 
             console.timeEnd("total prayer time"); 
+            console.log("");
             return callback();
         } 
 
