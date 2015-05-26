@@ -35,6 +35,19 @@ var App = React.createClass({
             this.componentDidUpdate();
         };
 
+        // call our onUnload function when the user navigates away
+        window.addEventListener("unload", this.onUnload);
+
+    },
+
+    // clean up
+    componentWillUnMount: function(){
+        window.removeEventListener("unload", this.onUnload);
+    },
+
+    onUnload: function(){
+        // stop the audio if the user navigates away
+        ScriptReader.stop();
     },
 
     componentDidUpdate: function(){
@@ -177,5 +190,7 @@ var App = React.createClass({
     }
 
 }); 
+
+
 
 export default App;
