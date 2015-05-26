@@ -28,16 +28,15 @@ var Card = React.createClass({
 
     // swap the selected state when this card is clicked
     handleClick: function(){
-        this.setState({
-            selected: !this.state.selected
-        });
-
-        // needs to be deferred so the state has a chance to update
-        setTimeout(() => {
+        
+        var newState = { selected: !this.state.selected };
+        
+        this.setState(newState, function(){
             if (this.props.onClick){
                 this.props.onClick(this.props.card.name, this.state.selected);
-            } 
-        }, 0);
+            }
+        });
+
     },
 
     componentWillUpdate: function(nextProps, nextState){

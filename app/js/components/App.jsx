@@ -105,7 +105,7 @@ var App = React.createClass({
 
         this.setState({
             game: game,
-            selectedCards: [], 
+            selectedCards: [], // clear the selected cards
             optionsPanelIsActive: false // close the options panel
         });
     },

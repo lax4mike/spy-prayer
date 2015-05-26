@@ -22,15 +22,16 @@ var OptionsPanel = React.createClass({
         // console.log(this.state.game);
     },
 
+    // update the game state and pass it up
     onGameChange: function(game){
-        this.setState({
-            game: game
-        });
 
-        // defer callback so the state is up to date
-        setTimeout(() => {
-            this.props.onGameChange(game);
-        }, 0);
+        var newState = { game: game };
+
+        this.setState(newState, function() {
+            if (this.props.onGameChange){
+                this.props.onGameChange(game);
+            }
+        });
     },
 
     render: function(){

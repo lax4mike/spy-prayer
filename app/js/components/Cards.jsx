@@ -53,15 +53,15 @@ var Cards = React.createClass({
             selectedCards = resolveDependencies.byRemoving(selectedCards);   
         }
 
-        this.setState({
-            selectedCards: selectedCards
+        var newState = { selectedCards: selectedCards };
+
+        // set the new state and pass the selected cards up
+        this.setState(newState, function() {
+            if (this.props.onChange){
+                this.props.onChange(selectedCards);
+            }
         });
 
-        // needs to be deferred so the state is up to date.
-        setTimeout(() => {
-            // call the onChange callback
-            this.props.onChange(selectedCards);
-        }, 0);
     },
 
     render: function(){ 

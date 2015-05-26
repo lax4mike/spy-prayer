@@ -23,15 +23,16 @@ var PlayersSelect = React.createClass({
 
     },
 
+    // update the player count state and notify any listeners
     updatePlayerCount: function(num){
 
-        this.setState({
-            playerCount: num
-        });
+        var newState = { playerCount: num };
 
-        setTimeout(() => {
-            this.props.onChange(this.state.playerCount);
-        }, 0);
+        this.setState(newState, function() {
+            if (this.props.onChange){
+                this.props.onChange(this.state.playerCount);
+            }
+        });
     },
 
     render: function(){
