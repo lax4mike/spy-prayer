@@ -79,13 +79,15 @@ var resistance = {
         {!commander} Spies, lower your thumbs and close your eyes.
 
 
-        {commander && deep-cover && !blind-spy}  Deep Cover Spy, close your eyes and lower your thumb. All other Spies, close your eyes, but keep your thumbs up so that the Commander may know of you scum.
+        {commander && deep-cover && !blind-spy}  Deep Cover Spy, close your eyes and lower your thumb. All other Spies, close your eyes, but keep your thumbs up
 
-        {commander && !deep-cover && blind-spy} Spies, close your eyes, but keep your thumbs up. Blind Spy, put your thumb up and keep your eyes closed.
+        {commander && !deep-cover && blind-spy} Everyone close your eyes. Spies, including the Blind Spy, put your thumb up
  
-        {commander && deep-cover && blind-spy} Everyone close your eyes and lower your thumbs.  Spies, including the Blind Spy, but not the Deep Cover Spy, put your thumb up so that the Commander may know of you scum.
+        {commander && deep-cover && blind-spy} Everyone close your eyes and lower your thumbs.  Spies, including the Blind Spy, but not the Deep Cover Spy, put your thumb up
 
-        {commander && !deep-cover && !blind-spy} Spies, close your eyes, but keep your thumbs up so that the Commander may know of you scum.
+        {commander && !deep-cover && !blind-spy} Spies, close your eyes, but keep your thumbs up
+
+        {commander} so that the Commander may know of you scum.
 
 
         {commander} Commander, open your eyes and observe the dirty thumbs of the traitors.

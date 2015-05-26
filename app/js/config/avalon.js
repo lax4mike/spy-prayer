@@ -79,13 +79,15 @@ var resistance = {
         {!merlin} Minions of Mordred, lower your thumbs and close your eyes.
 
 
-        {merlin && mordred && !oberon}  Mordred, close your eyes and lower your thumb. All other Minions of Mordred, close your eyes, but keep your thumbs up so that Merlin may know of you scum.
+        {merlin && mordred && !oberon}  Mordred, close your eyes and lower your thumb. All other Minions of Mordred, close your eyes, but keep your thumbs up
 
-        {merlin && !mordred && oberon} Minions of Mordred, close your eyes, but keep your thumbs up. Oberon, put your thumb up and keep your eyes closed.
+        {merlin && !mordred && oberon} Everyone close your eyes. Minions of Mordred, including Oberon, put your thumb up
  
-        {merlin && mordred && oberon} Everyone close your eyes and lower your thumbs.  Minions of Mordred, including Oberon, but not Mordred himself, put your thumb up so that Merlin may know of you scum.
+        {merlin && mordred && oberon} Everyone close your eyes and lower your thumbs.  Minions of Mordred, including Oberon, but not Mordred himself, put your thumb up
 
-        {merlin && !mordred && !oberon} Minions of Mordred, close your eyes, but keep your thumbs up so that Merlin may know of you scum.
+        {merlin && !mordred && !oberon} Minions of Mordred, close your eyes, but keep your thumbs up
+
+        {merlin} so that Merlin may know of you scum.
 
 
         {merlin} Merlin, open your eyes and observe the dirty thumbs of the traitors.
