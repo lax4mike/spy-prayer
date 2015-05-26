@@ -40,6 +40,9 @@
 
         .resistance &:checked + span { @extend %resistance-selected; }
         .avalon &:checked + span { @extend %avalon-selected; }
+        
+        .resistance &:disabled + span { @extend %resistance-disabled; }
+        .avalon &:disabled + span { @extend %avalon-disabled; }
     }
 
     span {

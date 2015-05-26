@@ -16,7 +16,8 @@ var Card = React.createClass({
     propTypes: {
         card     : React.PropTypes.object, // straight from config
         selected : React.PropTypes.bool, // will set state
-        onClick  : React.PropTypes.func
+        onClick  : React.PropTypes.func,
+        disabled : React.PropTypes.bool
     },
 
     getInitialState: function(){
@@ -28,6 +29,9 @@ var Card = React.createClass({
 
     // swap the selected state when this card is clicked
     handleClick: function(){
+
+        // don't do anything if this card is disabled
+        if (this.props.disabled){ return; }
         
         var newState = { selected: !this.state.selected };
         
@@ -53,7 +57,10 @@ var Card = React.createClass({
 
         var classCard = classNames(
             "card",
-            { "card--selected": this.state.selected }
+            { 
+                "card--selected": this.state.selected,
+                "card--disabled": this.props.disabled
+            }
         );
 
         var classIcon = classNames(

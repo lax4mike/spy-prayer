@@ -6,7 +6,8 @@ var PlayersSelect = React.createClass({
 
     propTypes: {
         onChange    : React.PropTypes.func,
-        playerCount : React.PropTypes.number
+        playerCount : React.PropTypes.number,
+        disabled    : React.PropTypes.bool
     },
 
     getInitialState: function() {
@@ -64,7 +65,8 @@ var PlayersSelect = React.createClass({
                                 <input type="radio" name="playerCount" 
                                     value={num} 
                                     checked={this.state.playerCount === num}
-                                    onChange={this.updatePlayerCount.bind(this, num)}/>
+                                    onChange={this.updatePlayerCount.bind(this, num)} 
+                                    disabled={this.props.disabled} />
                                 {num}
                             </label>
                         );

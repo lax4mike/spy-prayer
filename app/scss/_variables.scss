@@ -12,6 +12,7 @@ $hover-color: #f3f3f3;
 
 %resistance-hover { background: none; }
 %resistance-selected { background: #dff2bf; }
+%resistance-disabled { color: #999; cursor: default; }
 %resistance-button { 
     background: none; 
     border: 1px solid $border-color;
@@ -19,6 +20,7 @@ $hover-color: #f3f3f3;
 
 %avalon-hover { background: none; }
 %avalon-selected { background: #cce6ff; }
+%avalon-disabled { color: #999; cursor: default; }
 %avalon-button { border: 1px solid $border-color; }
 
 

@@ -36,6 +36,9 @@
 
     .resistance .card--selected & { @extend %resistance-selected; }
     .avalon .card--selected & { @extend %avalon-selected; }
+
+    .resistance .card--disabled & { @extend %resistance-disabled; }
+    .avalon .card--disabled & { @extend %avalon-disabled; }
 }
 
 

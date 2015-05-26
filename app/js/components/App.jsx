@@ -100,6 +100,9 @@ var App = React.createClass({
 
     onGameChange: function(game){
 
+        // make sure we're not playing
+        ScriptReader.stop();
+
         // load the config for "resistance" or "avalon"
         config.loadConfig(game);
 
@@ -148,11 +151,13 @@ var App = React.createClass({
 
                         <PlayersSelect 
                             onChange={this.onPlayerCountChange} 
-                            playerCount={this.state.playerCount} />
+                            playerCount={this.state.playerCount}
+                            disabled={this.state.isPlaying} />
                         <Cards 
                             cardsCollection={config.getCardsCollection()} 
                             onChange={this.onCardsChange} 
-                            selectedCards={this.state.selectedCards} />
+                            selectedCards={this.state.selectedCards} 
+                            disabled={this.state.isPlaying} />
 
                         <footer>
                             <PlayBtn 

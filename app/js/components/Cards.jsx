@@ -7,7 +7,8 @@ var Cards = React.createClass({
     propTypes: {
         cardsCollection : React.PropTypes.array,
         onChange        : React.PropTypes.func,
-        selectedCards   : React.PropTypes.array
+        selectedCards   : React.PropTypes.array,
+        disabled        : React.PropTypes.bool
     },
 
     getInitialState: function(){
@@ -82,7 +83,8 @@ var Cards = React.createClass({
                                 ref={"card-" + i}
                                 card={card}
                                 selected={selected}
-                                onClick={this.onCardClick}/>;
+                                onClick={this.onCardClick} 
+                                disabled={this.props.disabled} />;
                     })}
                 </div>
             </div>
