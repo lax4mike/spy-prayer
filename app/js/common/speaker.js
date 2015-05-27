@@ -1,8 +1,13 @@
 import "../utils/Array.prototype.find.js";
 
+
 // make sure this browser supports speech.
-if (!('speechSynthesis' in window)) {
-    console.error("Upgrade your broswer, grandma.  window.speechSynthesis is undefined");
+if (!("speechSynthesis" in window)) {
+    throw new Error("Upgrade your broswer, grandma.  window.speechSynthesis is undefined");
+}
+
+if (!SpeechSynthesisUtterance) {
+    throw new Error("Upgrade your broswer, grandma.  SpeechSynthesisUtterance is undefined");
 }
 
 
@@ -26,13 +31,12 @@ window.speechSynthesis.onvoiceschanged = function() {
     utterance.voice = voice; // Note: some voices don't support altering params
 }
 
-utterance.voiceURI = 'native';
+
+utterance.voiceURI = "native";
 utterance.volume = 1; // 0 to 1
 utterance.rate = 1; // 0.1 to 10
 utterance.pitch = 1; //0 to 2
-utterance.lang = 'en-US';
-
-
+utterance.lang = "en-US";
 
 
 
@@ -46,5 +50,7 @@ function speak(text, callback) {
 function stop(){
     speechSynthesis.cancel();
 }
+
+    
 
 export { speak, stop };
