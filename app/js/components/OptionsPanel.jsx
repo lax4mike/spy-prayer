@@ -1,3 +1,4 @@
+import React      from "react";
 import classNames from "../utils/classNames.js";
 
 var OptionsPanel = React.createClass({

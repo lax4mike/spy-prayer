@@ -1,5 +1,6 @@
+import React      from "react";
 import classNames from "../utils/classNames.js";
-import SvgIcon from "./SvgIcon.jsx";
+import SvgIcon    from "./SvgIcon.jsx";
 
 /* 
 {

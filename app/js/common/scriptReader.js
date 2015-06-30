@@ -94,7 +94,7 @@ function readScript(selectedCards, playerCount, callback) {
     // console.log(script);
     
     // make the delays longer when there are more people
-    var starDelay = (playerCount * 75) + 500;
+    var starDelay = (playerCount * 100) + 500;
 
     // read the next line of the script, and pause if needed
     function readNext(){

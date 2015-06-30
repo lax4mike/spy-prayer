@@ -79,7 +79,7 @@ var resistance = {
         {!commander} Spies, lower your thumbs and close your eyes.
 
 
-        {commander && deep-cover && !blind-spy}  Deep Cover Spy, close your eyes and lower your thumb. All other Spies, close your eyes, but keep your thumbs up
+        {commander && deep-cover && !blind-spy} Deep Cover Spy, close your eyes and lower your thumb. All other Spies, close your eyes, but keep your thumbs up
 
         {commander && !deep-cover && blind-spy} Everyone close your eyes. Spies, including the Blind Spy, put your thumb up
  

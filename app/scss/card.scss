@@ -16,10 +16,10 @@
 .card__btn {
     display: flex;
     padding: 5px;
-    margin: 5px 1%;
+    margin: 5px;
     flex: 1 1 auto;
     cursor: pointer;
-
+    
     
     .avalon & { 
         @extend %avalon-button; 

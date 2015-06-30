@@ -79,7 +79,7 @@ var resistance = {
         {!merlin} Minions of Mordred, lower your thumbs and close your eyes.
 
 
-        {merlin && mordred && !oberon}  Mordred, close your eyes and lower your thumb. All other Minions of Mordred, close your eyes, but keep your thumbs up
+        {merlin && mordred && !oberon} Mordred, close your eyes and lower your thumb. All other Minions of Mordred, close your eyes, but keep your thumbs up
 
         {merlin && !mordred && oberon} Everyone close your eyes. Minions of Mordred, including Oberon, put your thumb up
  

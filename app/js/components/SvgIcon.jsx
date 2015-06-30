@@ -1,4 +1,4 @@
-
+import React from "react";
 
 var SvgIcon = React.createClass({
 

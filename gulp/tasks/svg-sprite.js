@@ -17,26 +17,34 @@ var gulp           = require("gulp"),
  */
 
 
-// dev/default settings 
-var svg = {
-    src   : config.root + "/img/svg-sprite/**/*.svg",
-    watch : config.root + "/img/svg-sprite/**/*.svg",
-    dest  : config.dest + "/img",
+// svg settings 
+utils.setTaskConfig("svg", {
+    default: {
+        src   : config.root + "/img/svg-sprite/**/*.svg",
+        dest  : config.dest + "/img",
 
-    filename : "svg-sprite.svg",
+        filename : "svg-sprite.svg",
 
-    svgmin: false
-};
+        svgmin: false
+    },
 
-// production settings
-if (config.env === "prod"){
-    svg.svgmin = true;
-}
+    prod: {
+        svgmin: true
+    }
+});
+
+
+// register the watch
+utils.registerWatcher("svg-sprite", [
+    config.root + "/img/svg-sprite/**/*.svg"
+]);
 
 
 
 // generate svg sprite
 gulp.task("svg-sprite", function(){
+
+    var svg = utils.loadTaskConfig("svg");
 
     return gulp.src(svg.src)
         .pipe(utils.drano())
@@ -50,9 +58,4 @@ gulp.task("svg-sprite", function(){
 });
 
 
-// watch svg
-if (config.watch){
-    utils.logYellow("watching", "svg:", svg.watch);
-    gulp.watch(svg.watch, ["svg-sprite"]);
-}
 

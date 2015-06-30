@@ -1,4 +1,5 @@
-import Card from "./Card.jsx";
+import React from "react";
+import Card  from "./Card.jsx";
 import * as resolveDependencies from "../common/resolveDependencies.js";
 import "../utils/Array.prototype.find.js";
 

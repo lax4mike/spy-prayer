@@ -1,7 +1,7 @@
 var gulp           = require("gulp"),
     utils          = require("./utils"),
     config         = utils.loadConfig(),
-    browserSync    = require("browser-sync");
+    browserSync    = require("browser-sync").create();
 
 
 // browserSync settings
@@ -33,10 +33,10 @@ else {
 
 /* start browser sync if we have the "watch" option */
 gulp.task("browserSync", function(){
-    
+
     if (config.watch === true){
         utils.logYellow("watching", "browserSync:", settings.files);
-        browserSync(settings);
+        browserSync.init(settings);
     }
 
 });

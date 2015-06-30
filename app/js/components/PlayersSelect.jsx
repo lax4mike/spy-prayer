@@ -1,3 +1,4 @@
+import React       from "react";
 import * as config from "../config/config.js";
 
 var teams = config.getTeams();
