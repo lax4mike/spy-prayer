@@ -11,9 +11,11 @@ import classNames from "../utils/classNames.js";
 import * as config       from "../config/config.js";
 import * as ScriptReader from "../common/scriptReader";
 
-var localStorageKey = "spy-prayer-state";
+const localStorageKey = "spy-prayer-state";
 
-var App = React.createClass({
+const App = React.createClass({
+
+    displayName: "App",
 
     getInitialState: function(){
         return {
@@ -35,33 +37,16 @@ var App = React.createClass({
         if (!loaded){
             this.onGameChange(config.getGame());
             this.componentDidUpdate();
-        };
+        }
 
         // call our onUnload function when the user navigates away
-        window.addEventListener("unload", this.onUnload);
+        if (window){ window.addEventListener("unload", this.onUnload); }
 
     },
 
     // clean up
-    componentWillUnMount: function(){
-        window.removeEventListener("unload", this.onUnload);
-    },
-
-    onUnload: function(){
-        // stop the audio if the user navigates away
-        ScriptReader.stop();
-    },
-
-    componentDidUpdate: function(){
-
-        // add avalon or resistance class to the body
-        $("body").attr("class", this.state.game);
-        
-        // update the page title also
-        $("title").text(this.state.title);
-
-        this.saveStateToLocalStorage();
-    
+    componentWillUnmount: function(){
+        if (window){ window.removeEventListener("unload", this.onUnload); }
     },
 
     componentWillUpdate: function(newProps, newState){
@@ -75,6 +60,23 @@ var App = React.createClass({
                 title: title
             });  
         } 
+    },
+    
+    componentDidUpdate: function(){
+
+        // add avalon or resistance class to the body
+        $("body").attr("class", this.state.game);
+        
+        // update the page title also
+        $("title").text(this.state.title);
+
+        this.saveStateToLocalStorage();
+    
+    },
+
+    onUnload: function(){
+        // stop the audio if the user navigates away
+        ScriptReader.stop();
     },
 
     loadStateFromLocalStorage: function(){
@@ -159,8 +161,8 @@ var App = React.createClass({
             <div className={classes}>
                 <Header title={this.state.title} 
                     onOptionsClick={this.onOptionsClick}
-                    optionsPanelIsActive={this.state.optionsPanelIsActive}>
-                </Header>
+                    optionsPanelIsActive={this.state.optionsPanelIsActive} />
+ 
                 <main>    
                     <div className="home">
 

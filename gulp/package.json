@@ -9,6 +9,7 @@
     "del": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.2.0",
+    "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.5.2",
     "gulp-filter": "^2.0.2",
     "gulp-header": "^1.2.2",

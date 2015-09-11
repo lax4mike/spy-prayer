@@ -53,16 +53,15 @@ gulp.task("js", function(){
         // https://github.com/substack/node-browserify/issues/1044#issuecomment-72384131
         var b = browserify(js.browserify || {}) // pass options
             .add(file.path) // this file
-            .transform("babelify") 
-            // .external("react")
+            .transform("babelify");
 
         // externalize all bower components if defined
         try {
             var bowerComponents = config.taskConfig.bower.default.root + "/bower_components";
             var packages = fs.readdirSync(bowerComponents);
 
-            packages.forEach(function(package){
-                b.external(package);
+            packages.forEach(function(p){
+                b.external(p);
             });
         }
         catch(e) { console.log("ERRR"); /* do nothing */ }

@@ -1,7 +1,6 @@
 var gulp           = require("gulp"),
     utils          = require("./utils"),
-    config         = utils.loadConfig(),
-    rename         = require("gulp-rename");
+    config         = utils.loadConfig();
 
 
 // dev/default settings

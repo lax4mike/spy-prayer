@@ -1,11 +1,19 @@
 import React      from "react";
 import classNames from "../utils/classNames.js";
 
-var OptionsPanel = React.createClass({
+const gameOptions = [
+    { "label": "Resistance", "value": "resistance" },
+    { "label": "Avalon",     "value": "avalon" }
+];
+
+const OptionsPanel = React.createClass({
+
+    displayName: "OptionsPanel",
 
     propTypes: {
         optionsPanelIsActive: React.PropTypes.bool,
-        onChange: React.PropTypes.func
+        onGameChange: React.PropTypes.func,
+        game: React.PropTypes.oneOf(["resistance", "avalon"])
     },
 
     getInitialState: function(){
@@ -13,11 +21,6 @@ var OptionsPanel = React.createClass({
             game: this.props.game
         };
     },
-
-    gameOptions: [
-        { "label": "Resistance", "value": "resistance" },
-        { "label": "Avalon",     "value": "avalon" }
-    ],
 
     componentDidUpdate: function(){
         // console.log(this.state.game);
@@ -52,7 +55,7 @@ var OptionsPanel = React.createClass({
                 <section>
                     <div className="btn-group">
 
-                        {this.gameOptions.map(function(opt, i){
+                        { gameOptions.map(function(opt, i){
                             return (
                                 <label className="btn-group__btn" key={i}>
                                     <input type="radio" name="game"
@@ -64,7 +67,7 @@ var OptionsPanel = React.createClass({
                                     <span>{opt.label}</span>
                                 </label>
                             );
-                        }.bind(this))}
+                        }.bind(this)) }
                         
                     </div>
                 </section>

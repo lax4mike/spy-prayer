@@ -3,7 +3,9 @@ import Card  from "./Card.jsx";
 import * as resolveDependencies from "../common/resolveDependencies.js";
 import "../utils/Array.prototype.find.js";
 
-var Cards = React.createClass({
+const Cards = React.createClass({
+
+    displayName: "Cards",
 
     propTypes: {
         cardsCollection : React.PropTypes.array,
@@ -18,11 +20,6 @@ var Cards = React.createClass({
         };
     },
 
-    componentDidUpdate: function(){
-        // console.log("new cards", this.state.selectedCards.map((c)=>c.id));
-        // this.props.onChange(this.state.selectedCards); this causes an infinate loop
-    },
-
     componentWillUpdate: function(nextProps, nextState){
       
         // update the state if needed
@@ -32,6 +29,11 @@ var Cards = React.createClass({
                 selectedCards: nextProps.selectedCards
             });
         }
+    },
+
+    componentDidUpdate: function(){
+        // console.log("new cards", this.state.selectedCards.map((c)=>c.id));
+        // this.props.onChange(this.state.selectedCards); this causes an infinate loop
     },
 
     onCardClick: function(name, selected){
@@ -44,7 +46,7 @@ var Cards = React.createClass({
                 return card.state.selected;
             })
             .map((card, i) =>  {
-                return card.props.card 
+                return card.props.card;
             });
 
         // resolve any depenencies
@@ -79,13 +81,15 @@ var Cards = React.createClass({
                         });
                         var selected = isSelected !== undefined;
 
-                        return <Card 
+                        return (
+                            <Card 
                                 key={i} 
                                 ref={"card-" + i}
                                 card={card}
                                 selected={selected}
                                 onClick={this.onCardClick} 
-                                disabled={this.props.disabled} />;
+                                disabled={this.props.disabled} />
+                        );
                     })}
                 </div>
             </div>

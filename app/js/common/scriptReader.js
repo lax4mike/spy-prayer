@@ -1,4 +1,4 @@
-import * as Speaker from "../common/speaker";
+import * as Speaker from "../common/speaker.js";
 import * as config from "../config/config.js";
 import "../utils/Array.prototype.includes.js";
 

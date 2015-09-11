@@ -1,9 +1,11 @@
 import React       from "react";
 import * as config from "../config/config.js";
 
-var teams = config.getTeams();
+const teams = config.getTeams();
 
-var PlayersSelect = React.createClass({
+const PlayersSelect = React.createClass({
+
+    displayName: "PlayersSelect",
 
     propTypes: {
         onChange    : React.PropTypes.func,
@@ -14,7 +16,7 @@ var PlayersSelect = React.createClass({
     getInitialState: function() {
         return {
             playerCount: this.props.playerCount || 5
-        }
+        };
     },
 
     componentDidMount: function(){
@@ -39,10 +41,10 @@ var PlayersSelect = React.createClass({
 
     render: function(){
 
-        var teams = config.getTeams();
+        // const teams = config.getTeams();
 
-        var evilPlayersCount = config.evilPlayerMap[this.state.playerCount];
-        var goodPlayersCount = this.state.playerCount - evilPlayersCount;
+        const evilPlayersCount = config.evilPlayerMap[this.state.playerCount];
+        const goodPlayersCount = this.state.playerCount - evilPlayersCount;
 
         return (
             <div className="player-select">

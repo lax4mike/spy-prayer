@@ -6,7 +6,7 @@ if (!("speechSynthesis" in window)) {
     throw new Error("Upgrade your broswer, grandma.  window.speechSynthesis is undefined");
 }
 
-if (!SpeechSynthesisUtterance) {
+if (!("SpeechSynthesisUtterance" in window)) {
     throw new Error("Upgrade your broswer, grandma.  SpeechSynthesisUtterance is undefined");
 }
 
@@ -15,10 +15,11 @@ if (!SpeechSynthesisUtterance) {
 var utterance = new SpeechSynthesisUtterance();
 
 window.speechSynthesis.onvoiceschanged = function() {
-    var voices = window.speechSynthesis.getVoices()
-        .map(function(v){
-            return v.name
-        });
+    
+    // const voices = window.speechSynthesis.getVoices()
+    //     .map(function(v){
+    //         return v.name;
+    //     });
     // console.log(voices);
     // Android voices: ["German Germany", "English United Kingdom", "English India", "English United States", "Spanish Spain", "Spanish Mexico", "Spanish United States", "French Belgium", "French France", "Hindi India", "Indonesian Indonesia", "Italian Italy", "Japanese Japan", "Korean South Korea", "Dutch Netherlands", "Polish Poland", "Portuguese Brazil", "Portuguese Portugal", "Russian Russia"]
 
@@ -29,7 +30,7 @@ window.speechSynthesis.onvoiceschanged = function() {
         .find(v => v.name == "Daniel"); 
 
     utterance.voice = voice; // Note: some voices don't support altering params
-}
+};
 
 
 utterance.voiceURI = "native";
@@ -51,6 +52,6 @@ function stop(){
     speechSynthesis.cancel();
 }
 
-    
 
 export { speak, stop };
+

@@ -1,5 +1,6 @@
 import React      from "react";
 import classNames from "../utils/classNames.js";
+
 import SvgIcon    from "./SvgIcon.jsx";
 
 /* 
@@ -12,7 +13,9 @@ import SvgIcon    from "./SvgIcon.jsx";
 }
 */
 
-var Card = React.createClass({
+const Card = React.createClass({
+
+    displayName: "Card",
 
     propTypes: {
         card     : React.PropTypes.object, // straight from config
@@ -26,6 +29,16 @@ var Card = React.createClass({
         return {
             selected: this.props.selected
         };
+    },
+
+    componentWillUpdate: function(nextProps, nextState){
+        
+        // update the state if needed
+        if (this.state.selected !== nextProps.selected){
+            this.setState({
+                selected: nextProps.selected
+            });
+        }
     },
 
     // swap the selected state when this card is clicked
@@ -44,19 +57,29 @@ var Card = React.createClass({
 
     },
 
-    componentWillUpdate: function(nextProps, nextState){
-        
-        // update the state if needed
-        if (this.state.selected !== nextProps.selected){
-            this.setState({
-                selected: nextProps.selected
-            });
+    _getIcon: function(){
+        const classIcon = classNames(
+            "card__icon",
+            "card__icon--" + this.props.card.icon.toLowerCase()
+        );
+
+        // for avalon images
+        if (this.props.card["icon-type"] === "png"){
+            return <div className={classIcon}></div>;
+        }
+        // for resistance svgs
+        else if (this.props.card["icon-type"] === "svg"){
+            return (
+                <div className={classIcon}>
+                   <SvgIcon href={"img/svg-sprite.svg#icon-" + this.props.card.icon} />
+               </div>
+           );
         }
     },
 
     render: function(){ 
 
-        var classCard = classNames(
+        const classCard = classNames(
             "card",
             { 
                 "card--selected": this.state.selected,
@@ -64,26 +87,10 @@ var Card = React.createClass({
             }
         );
 
-        var classIcon = classNames(
-            "card__icon",
-            "card__icon--" + this.props.card.icon.toLowerCase()
-        );
-
-        // for avalon images
-        if (this.props.card["icon-type"] === "png"){
-            var icon = <div className={classIcon}></div>
-        }
-        // for resistance svgs
-        else if (this.props.card["icon-type"] === "svg"){
-            var icon = <div className={classIcon}>
-                           <SvgIcon href={"img/svg-sprite.svg#icon-" + this.props.card.icon} />
-                       </div>;
-        }
-
         return (
             <div className={classCard}>
                 <div className="card__btn" onClick={this.handleClick}>
-                    {icon}
+                    {this._getIcon()}
                     <div className="card__info">
                         <div className="card__name">{this.props.card.name}</div>
                         <div className="card__description">{this.props.card.description}</div>

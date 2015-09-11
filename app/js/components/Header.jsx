@@ -1,8 +1,9 @@
 import React      from "react";
 import classNames from "../utils/classNames.js";
-import SvgIcon    from "./SvgIcon.jsx";
 
-var Header = React.createClass({
+const Header = React.createClass({
+
+    displayName: "Header",
 
     propTypes: {
         title                : React.PropTypes.string,

@@ -1,6 +1,8 @@
 import React from "react";
 
-var PlayBtn = React.createClass({
+const PlayBtn = React.createClass({
+
+    displayName: "PlayBtn",
 
     propTypes: {
         isPlaying : React.PropTypes.bool,

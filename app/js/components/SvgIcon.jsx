@@ -1,6 +1,8 @@
 import React from "react";
 
-var SvgIcon = React.createClass({
+const SvgIcon = React.createClass({
+
+    displayName: "SvgIcon",
 
     propTypes: {
         className : React.PropTypes.string,
@@ -22,4 +24,4 @@ var SvgIcon = React.createClass({
 
 });
 
-module.exports = SvgIcon;
+export default SvgIcon;
