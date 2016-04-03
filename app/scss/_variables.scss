@@ -8,10 +8,13 @@ $border-color: #ddd;
 $spy-red: #e12;
 $resistance-blue: #5ab;
 
+$resistance-green: #dff2bf;
+$avalon-blue: #cce6ff;
+
 $hover-color: #f3f3f3;
 
 %resistance-hover { background: none; }
-%resistance-selected { background: #dff2bf; }
+%resistance-selected { background: $resistance-green; }
 %resistance-disabled { color: #999; cursor: default; }
 %resistance-button { 
     background: none; 
@@ -19,7 +22,7 @@ $hover-color: #f3f3f3;
 }
 
 %avalon-hover { background: none; }
-%avalon-selected { background: #cce6ff; }
+%avalon-selected { background: $avalon-blue; }
 %avalon-disabled { color: #999; cursor: default; }
 %avalon-button { border: 1px solid $border-color; }
 

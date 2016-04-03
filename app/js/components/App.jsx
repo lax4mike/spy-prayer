@@ -1,10 +1,10 @@
 import React         from "react";
 import $             from "jquery";
 import Header        from "./Header.jsx";
-import OptionsPanel  from "./OptionsPanel.jsx";
 import Cards         from "./Cards.jsx";
 import PlayBtn       from "./PlayBtn.jsx";
 import PlayersSelect from "./PlayersSelect.jsx";
+import OptionsPanel  from "./options-panel/OptionsPanel.jsx";
 
 import classNames from "../utils/classNames.js";
 

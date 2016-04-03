@@ -55,6 +55,17 @@ h2 {
     margin: 1em 0 0.5em;
 }
 
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+
+p {
+    line-height: 1.75em;
+}
+
 .mount {
     height: 100%;
 }

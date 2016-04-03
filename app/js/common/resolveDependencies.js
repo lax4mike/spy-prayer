@@ -23,7 +23,7 @@ function resolveByAdding(selectedCards){
     var resolveCard = function(card){
         
         // add this card to the resolved collection
-        if (!isInResolved(card.id)) { resolved.push(card) };
+        if (!isInResolved(card.id)) { resolved.push(card); }
 
         // if this card has dependencies, resolve those too
         if (card.dependencies) {

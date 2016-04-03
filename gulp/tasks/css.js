@@ -7,7 +7,7 @@ var gulp          = require("gulp"),
     rename        = require("gulp-rename"),
     header        = require("gulp-header"),
     concat        = require("gulp-concat"),
-    spritesmith   = require("gulp.spritesmith");
+    spritesmith   = require("gulp.spritesmith"),
     sourcemaps    = require("gulp-sourcemaps");
 
 // css settings
@@ -79,14 +79,14 @@ gulp.task("png", function(){
     // write _png-sprite-generated.scss
     return spriteStreams.css
         .pipe(rename(styles.sprite.sassName))
-        .pipe(gulp.dest(styles.sprite.sassDest))
+        .pipe(gulp.dest(styles.sprite.sassDest));
 });
 
 /* css task, wait for png task to finish first, so the png sass file is available and up to date */
 gulp.task("css", ["png"], function(next) {
 
     var styles = utils.loadTaskConfig("styles");
-
+    
     var gulpCss = gulp.src(styles.src)
         .pipe(utils.drano())
         .pipe(sourcemaps.init())

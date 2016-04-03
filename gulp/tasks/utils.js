@@ -1,11 +1,12 @@
 var gulp        = require("gulp"),
     plumber     = require("gulp-plumber"),
     notify      = require("gulp-notify"),
+    watch       = require("gulp-watch"),
     fs          = require("fs"),
-    path        = require("path"),
     runSequence = require("run-sequence"),
     color       = require("cli-color"),
-    argv        = require("yargs").argv;
+    argv        = require("yargs").argv,
+    merge       = require("deepmerge");
 
 
 /**
@@ -101,13 +102,15 @@ module.exports.loadTaskConfig = function loadTaskConfig(task){
     // make sure the taskConfig is defined
     if (!config.taskConfig) { throw new Error("config.taskConfig is not defined"); }
 
-    var taskEnvConfig = config.taskConfig[task];
+    // load the config for this task (eg. css, js)
+    var thisTaskConfig = config.taskConfig[task];
 
-    if (!taskEnvConfig) { 
+    if (!thisTaskConfig) { 
         throw new Error("'" + task + "' is not defined in config.taskConfig! use utils.setTaskConfig(task, config)"); 
     }
 
-    var defaultTaskConfig = config.taskConfig[task].default;
+    // load default task config for this task
+    var defaultTaskConfig = thisTaskConfig.default;
 
     // default config is required. see the config notes at the top of this file
     if (!defaultTaskConfig) { throw new Error("'" + task + "' does not define a default config!"); }
@@ -117,11 +120,11 @@ module.exports.loadTaskConfig = function loadTaskConfig(task){
     var env = argv.env || config.env;
 
     // if there is no env set, or there is no config set for this env, return default task config
-    if (!env || !config.taskConfig[task].hasOwnProperty(env)){ return defaultTaskConfig; }
+    if (!env || !thisTaskConfig.hasOwnProperty(env)){ return defaultTaskConfig; }
 
     // otherwise, load the environment config and merge it with the default config
-    var envTaskConfig = config.taskConfig[task][env];
-    return Object.assign({}, defaultTaskConfig, envTaskConfig); 
+    var envTaskConfig = thisTaskConfig[env];
+    return merge(defaultTaskConfig, envTaskConfig); 
 };
 
 
@@ -174,7 +177,12 @@ module.exports.build = function build() {
             // only watch this task if it's in our task list
             if (config.tasks.indexOf(watcher.task) !== -1) { 
                 this.logYellow("watching", watcher.task + ":", watcher.files);
-                gulp.watch(watcher.files, [watcher.task]);
+                
+                // using gulp-watch instead of gulp.watch because gulp-watch will
+                // recognize when new files are added/deleted.
+                watch(watcher.files, function(){
+                    gulp.start([watcher.task]);
+                });
             }
         }.bind(this));
       
@@ -185,7 +193,7 @@ module.exports.build = function build() {
         gulp.start(config.tasks);
     }
  
-}
+};
 
 // add a function to the watchers
 module.exports.registerWatcher = function registerWatch(watcherTask, watcherFiles){
@@ -195,7 +203,7 @@ module.exports.registerWatcher = function registerWatch(watcherTask, watcherFile
         task: watcherTask,
         files: watcherFiles
     });
-}
+};
 
 
 

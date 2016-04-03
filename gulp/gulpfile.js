@@ -21,7 +21,6 @@
 // Include gulp and plugins
 var gulp        = require("gulp"),
     utils       = require("./tasks/utils"),
-    notify      = require("gulp-notify"),
     del         = require("del"),
     path        = require("path"),
     config      = utils.loadConfig(); // initialize the config
